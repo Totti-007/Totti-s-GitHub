@@ -1,0 +1,6 @@
+framework module FactoryDeviceControl {
+  umbrella header "FactoryDeviceControl.h"
+
+  export *
+  module * { export * }
+}

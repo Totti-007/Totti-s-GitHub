@@ -1,0 +1,4 @@
+framework module FactoryStation {
+    header "FactoryStation-Swift.h"
+    requires objc
+}

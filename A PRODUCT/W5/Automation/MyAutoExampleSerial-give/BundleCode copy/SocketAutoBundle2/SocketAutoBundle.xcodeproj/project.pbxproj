@@ -1,0 +1,650 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9D0D263023B332C700992C13 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0D262F23B332C700992C13 /* AsyncSocket.m */; };
+		9D0D263923B333CC00992C13 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0D263423B333CC00992C13 /* GCDAsyncUdpSocket.m */; };
+		9D0D263A23B333CC00992C13 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0D263523B333CC00992C13 /* GCDAsyncSocket.m */; };
+		9D0D263B23B333CC00992C13 /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 9D0D263823B333CC00992C13 /* README.markdown */; };
+		9D0D264B23B3577D00992C13 /* ORSSerialPacketDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0D263D23B3577D00992C13 /* ORSSerialPacketDescriptor.m */; };
+		9D0D264C23B3577D00992C13 /* ORSSerialBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0D263F23B3577D00992C13 /* ORSSerialBuffer.m */; };
+		9D0D264D23B3577D00992C13 /* ORSSerialRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0D264023B3577D00992C13 /* ORSSerialRequest.m */; };
+		9D0D264E23B3577D00992C13 /* ORSSerialPortManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0D264123B3577D00992C13 /* ORSSerialPortManager.m */; };
+		9D0D264F23B3577D00992C13 /* SerialPortTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0D264223B3577D00992C13 /* SerialPortTool.m */; };
+		9D0D265023B3577D00992C13 /* ORSSerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0D264323B3577D00992C13 /* ORSSerialPort.m */; };
+		9D1528A423274E6500F3C8C9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D1528A323274E6500F3C8C9 /* Foundation.framework */; };
+		9D1528A623274E6500F3C8C9 /* CoreTestFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D1528A523274E6500F3C8C9 /* CoreTestFoundation.framework */; };
+		9D1528AC23274E6500F3C8C9 /* SocketAutoPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1528AB23274E6500F3C8C9 /* SocketAutoPlugin.m */; };
+		9D1528AF23274E6500F3C8C9 /* SocketAutoBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1528AE23274E6500F3C8C9 /* SocketAutoBundle.m */; };
+		9D1528B123274E6500F3C8C9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D1528B023274E6500F3C8C9 /* Images.xcassets */; };
+		9D1528B723274E6500F3C8C9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D1528A323274E6500F3C8C9 /* Foundation.framework */; };
+		9D1528B823274E6500F3C8C9 /* CoreTestFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D1528A523274E6500F3C8C9 /* CoreTestFoundation.framework */; };
+		9D1528BF23274E6500F3C8C9 /* ___VARIABLE_className___Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1528BE23274E6500F3C8C9 /* ___VARIABLE_className___Tests.m */; };
+		9DA9185523973D7A00D43B58 /* ZMQContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA9184A23973D7A00D43B58 /* ZMQContext.m */; };
+		9DA9185623973D7A00D43B58 /* ZMQException.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA9184B23973D7A00D43B58 /* ZMQException.m */; };
+		9DA9185723973D7A00D43B58 /* ZMQSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA9184C23973D7A00D43B58 /* ZMQSocket.m */; };
+		9DA9185823973D7A00D43B58 /* libzmq.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DA9185223973D7A00D43B58 /* libzmq.a */; };
+		9DBBA1E023B360DC00248B59 /* Serial.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DBBA1DF23B360DC00248B59 /* Serial.m */; };
+		9DBBA1E323B36F5E00248B59 /* SerialAutoPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DBBA1E223B36F5E00248B59 /* SerialAutoPlugin.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9D1528B923274E6500F3C8C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9D15289823274E6500F3C8C9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9D15289F23274E6500F3C8C9;
+			remoteInfo = SocketAutoBundle;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9D0D262E23B332C700992C13 /* AsyncSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
+		9D0D262F23B332C700992C13 /* AsyncSocket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
+		9D0D263423B333CC00992C13 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
+		9D0D263523B333CC00992C13 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		9D0D263623B333CC00992C13 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		9D0D263723B333CC00992C13 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		9D0D263823B333CC00992C13 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.markdown; sourceTree = "<group>"; };
+		9D0D263D23B3577D00992C13 /* ORSSerialPacketDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORSSerialPacketDescriptor.m; sourceTree = "<group>"; };
+		9D0D263E23B3577D00992C13 /* ORSSerialPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORSSerialPort.h; sourceTree = "<group>"; };
+		9D0D263F23B3577D00992C13 /* ORSSerialBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORSSerialBuffer.m; sourceTree = "<group>"; };
+		9D0D264023B3577D00992C13 /* ORSSerialRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORSSerialRequest.m; sourceTree = "<group>"; };
+		9D0D264123B3577D00992C13 /* ORSSerialPortManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORSSerialPortManager.m; sourceTree = "<group>"; };
+		9D0D264223B3577D00992C13 /* SerialPortTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerialPortTool.m; sourceTree = "<group>"; };
+		9D0D264323B3577D00992C13 /* ORSSerialPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORSSerialPort.m; sourceTree = "<group>"; };
+		9D0D264423B3577D00992C13 /* ORSSerialPacketDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORSSerialPacketDescriptor.h; sourceTree = "<group>"; };
+		9D0D264523B3577D00992C13 /* ORSSerialBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORSSerialBuffer.h; sourceTree = "<group>"; };
+		9D0D264623B3577D00992C13 /* ORSSerialRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORSSerialRequest.h; sourceTree = "<group>"; };
+		9D0D264723B3577D00992C13 /* SerialPortTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerialPortTool.h; sourceTree = "<group>"; };
+		9D0D264823B3577D00992C13 /* ORSSerialPortManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORSSerialPortManager.h; sourceTree = "<group>"; };
+		9D1528A023274E6500F3C8C9 /* SocketAutoBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SocketAutoBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D1528A323274E6500F3C8C9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9D1528A523274E6500F3C8C9 /* CoreTestFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTestFoundation.framework; path = Library/Frameworks/CoreTestFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		9D1528A923274E6500F3C8C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D1528AA23274E6500F3C8C9 /* SocketAutoPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketAutoPlugin.h; sourceTree = "<group>"; };
+		9D1528AB23274E6500F3C8C9 /* SocketAutoPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketAutoPlugin.m; sourceTree = "<group>"; };
+		9D1528AD23274E6500F3C8C9 /* SocketAutoBundle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketAutoBundle.h; sourceTree = "<group>"; };
+		9D1528AE23274E6500F3C8C9 /* SocketAutoBundle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketAutoBundle.m; sourceTree = "<group>"; };
+		9D1528B023274E6500F3C8C9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9D1528B623274E6500F3C8C9 /* SocketAutoBundleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SocketAutoBundleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D1528BD23274E6500F3C8C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D1528BE23274E6500F3C8C9 /* ___VARIABLE_className___Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "___VARIABLE_className___Tests.m"; sourceTree = "<group>"; };
+		9DA9184823973D7A00D43B58 /* ZMQException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMQException.h; sourceTree = "<group>"; };
+		9DA9184923973D7A00D43B58 /* ZMQSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMQSocket.h; sourceTree = "<group>"; };
+		9DA9184A23973D7A00D43B58 /* ZMQContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMQContext.m; sourceTree = "<group>"; };
+		9DA9184B23973D7A00D43B58 /* ZMQException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMQException.m; sourceTree = "<group>"; };
+		9DA9184C23973D7A00D43B58 /* ZMQSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMQSocket.m; sourceTree = "<group>"; };
+		9DA9184D23973D7A00D43B58 /* ZMQContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMQContext.h; sourceTree = "<group>"; };
+		9DA9184E23973D7A00D43B58 /* ZMQObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMQObjC.h; sourceTree = "<group>"; };
+		9DA9185023973D7A00D43B58 /* zmq_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zmq_utils.h; sourceTree = "<group>"; };
+		9DA9185123973D7A00D43B58 /* zmq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zmq.h; sourceTree = "<group>"; };
+		9DA9185223973D7A00D43B58 /* libzmq.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libzmq.a; sourceTree = "<group>"; };
+		9DA9185423973D7A00D43B58 /* zmq.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = zmq.hpp; sourceTree = "<group>"; };
+		9DBBA1DE23B360DC00248B59 /* Serial.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Serial.h; sourceTree = "<group>"; };
+		9DBBA1DF23B360DC00248B59 /* Serial.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Serial.m; sourceTree = "<group>"; };
+		9DBBA1E123B36F5E00248B59 /* SerialAutoPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerialAutoPlugin.h; sourceTree = "<group>"; };
+		9DBBA1E223B36F5E00248B59 /* SerialAutoPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerialAutoPlugin.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9D15289D23274E6500F3C8C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DA9185823973D7A00D43B58 /* libzmq.a in Frameworks */,
+				9D1528A623274E6500F3C8C9 /* CoreTestFoundation.framework in Frameworks */,
+				9D1528A423274E6500F3C8C9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D1528B323274E6500F3C8C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D1528B823274E6500F3C8C9 /* CoreTestFoundation.framework in Frameworks */,
+				9D1528B723274E6500F3C8C9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9D0D262C23B3328200992C13 /* socket */ = {
+			isa = PBXGroup;
+			children = (
+				9D0D263123B333CC00992C13 /* CocoaAsyncSocket */,
+				9D0D262E23B332C700992C13 /* AsyncSocket.h */,
+				9D0D262F23B332C700992C13 /* AsyncSocket.m */,
+			);
+			path = socket;
+			sourceTree = "<group>";
+		};
+		9D0D262D23B3328A00992C13 /* serial */ = {
+			isa = PBXGroup;
+			children = (
+				9D0D263C23B3577D00992C13 /* ORSSerialPort */,
+				9DBBA1DE23B360DC00248B59 /* Serial.h */,
+				9DBBA1DF23B360DC00248B59 /* Serial.m */,
+			);
+			path = serial;
+			sourceTree = "<group>";
+		};
+		9D0D263123B333CC00992C13 /* CocoaAsyncSocket */ = {
+			isa = PBXGroup;
+			children = (
+				9D0D263223B333CC00992C13 /* Source */,
+				9D0D263823B333CC00992C13 /* README.markdown */,
+			);
+			path = CocoaAsyncSocket;
+			sourceTree = "<group>";
+		};
+		9D0D263223B333CC00992C13 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				9D0D263323B333CC00992C13 /* GCD */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		9D0D263323B333CC00992C13 /* GCD */ = {
+			isa = PBXGroup;
+			children = (
+				9D0D263423B333CC00992C13 /* GCDAsyncUdpSocket.m */,
+				9D0D263523B333CC00992C13 /* GCDAsyncSocket.m */,
+				9D0D263623B333CC00992C13 /* GCDAsyncUdpSocket.h */,
+				9D0D263723B333CC00992C13 /* GCDAsyncSocket.h */,
+			);
+			path = GCD;
+			sourceTree = "<group>";
+		};
+		9D0D263C23B3577D00992C13 /* ORSSerialPort */ = {
+			isa = PBXGroup;
+			children = (
+				9D0D263D23B3577D00992C13 /* ORSSerialPacketDescriptor.m */,
+				9D0D263E23B3577D00992C13 /* ORSSerialPort.h */,
+				9D0D263F23B3577D00992C13 /* ORSSerialBuffer.m */,
+				9D0D264023B3577D00992C13 /* ORSSerialRequest.m */,
+				9D0D264123B3577D00992C13 /* ORSSerialPortManager.m */,
+				9D0D264223B3577D00992C13 /* SerialPortTool.m */,
+				9D0D264323B3577D00992C13 /* ORSSerialPort.m */,
+				9D0D264423B3577D00992C13 /* ORSSerialPacketDescriptor.h */,
+				9D0D264523B3577D00992C13 /* ORSSerialBuffer.h */,
+				9D0D264623B3577D00992C13 /* ORSSerialRequest.h */,
+				9D0D264723B3577D00992C13 /* SerialPortTool.h */,
+				9D0D264823B3577D00992C13 /* ORSSerialPortManager.h */,
+			);
+			path = ORSSerialPort;
+			sourceTree = "<group>";
+		};
+		9D15289723274E6500F3C8C9 = {
+			isa = PBXGroup;
+			children = (
+				9D1528A723274E6500F3C8C9 /* SocketAutoBundle */,
+				9D1528BB23274E6500F3C8C9 /* SocketAutoBundleTests */,
+				9D1528A223274E6500F3C8C9 /* Frameworks */,
+				9D1528A123274E6500F3C8C9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9D1528A123274E6500F3C8C9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9D1528A023274E6500F3C8C9 /* SocketAutoBundle.bundle */,
+				9D1528B623274E6500F3C8C9 /* SocketAutoBundleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9D1528A223274E6500F3C8C9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9D1528A323274E6500F3C8C9 /* Foundation.framework */,
+				9D1528A523274E6500F3C8C9 /* CoreTestFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9D1528A723274E6500F3C8C9 /* SocketAutoBundle */ = {
+			isa = PBXGroup;
+			children = (
+				9DBBA1DD23B3601F00248B59 /* SerialAutoPlugin */,
+				9D0D262D23B3328A00992C13 /* serial */,
+				9D0D262C23B3328200992C13 /* socket */,
+				9DA9184623973D7A00D43B58 /* zmq */,
+				9DBBA1DC23B35FE800248B59 /* SocketAutoPlugin */,
+				9D1528AD23274E6500F3C8C9 /* SocketAutoBundle.h */,
+				9D1528AE23274E6500F3C8C9 /* SocketAutoBundle.m */,
+				9D1528B023274E6500F3C8C9 /* Images.xcassets */,
+				9D1528A823274E6500F3C8C9 /* Supporting Files */,
+			);
+			path = SocketAutoBundle;
+			sourceTree = "<group>";
+		};
+		9D1528A823274E6500F3C8C9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9D1528A923274E6500F3C8C9 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9D1528BB23274E6500F3C8C9 /* SocketAutoBundleTests */ = {
+			isa = PBXGroup;
+			children = (
+				9D1528BE23274E6500F3C8C9 /* ___VARIABLE_className___Tests.m */,
+				9D1528BC23274E6500F3C8C9 /* Supporting Files */,
+			);
+			path = SocketAutoBundleTests;
+			sourceTree = "<group>";
+		};
+		9D1528BC23274E6500F3C8C9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9D1528BD23274E6500F3C8C9 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9DA9184623973D7A00D43B58 /* zmq */ = {
+			isa = PBXGroup;
+			children = (
+				9DA9184723973D7A00D43B58 /* objc-zmq */,
+				9DA9184F23973D7A00D43B58 /* zeromq */,
+				9DA9185223973D7A00D43B58 /* libzmq.a */,
+				9DA9185323973D7A00D43B58 /* cppzmq */,
+			);
+			path = zmq;
+			sourceTree = "<group>";
+		};
+		9DA9184723973D7A00D43B58 /* objc-zmq */ = {
+			isa = PBXGroup;
+			children = (
+				9DA9184823973D7A00D43B58 /* ZMQException.h */,
+				9DA9184923973D7A00D43B58 /* ZMQSocket.h */,
+				9DA9184A23973D7A00D43B58 /* ZMQContext.m */,
+				9DA9184B23973D7A00D43B58 /* ZMQException.m */,
+				9DA9184C23973D7A00D43B58 /* ZMQSocket.m */,
+				9DA9184D23973D7A00D43B58 /* ZMQContext.h */,
+				9DA9184E23973D7A00D43B58 /* ZMQObjC.h */,
+			);
+			path = "objc-zmq";
+			sourceTree = "<group>";
+		};
+		9DA9184F23973D7A00D43B58 /* zeromq */ = {
+			isa = PBXGroup;
+			children = (
+				9DA9185023973D7A00D43B58 /* zmq_utils.h */,
+				9DA9185123973D7A00D43B58 /* zmq.h */,
+			);
+			path = zeromq;
+			sourceTree = "<group>";
+		};
+		9DA9185323973D7A00D43B58 /* cppzmq */ = {
+			isa = PBXGroup;
+			children = (
+				9DA9185423973D7A00D43B58 /* zmq.hpp */,
+			);
+			path = cppzmq;
+			sourceTree = "<group>";
+		};
+		9DBBA1DC23B35FE800248B59 /* SocketAutoPlugin */ = {
+			isa = PBXGroup;
+			children = (
+				9D1528AA23274E6500F3C8C9 /* SocketAutoPlugin.h */,
+				9D1528AB23274E6500F3C8C9 /* SocketAutoPlugin.m */,
+			);
+			path = SocketAutoPlugin;
+			sourceTree = "<group>";
+		};
+		9DBBA1DD23B3601F00248B59 /* SerialAutoPlugin */ = {
+			isa = PBXGroup;
+			children = (
+				9DBBA1E123B36F5E00248B59 /* SerialAutoPlugin.h */,
+				9DBBA1E223B36F5E00248B59 /* SerialAutoPlugin.m */,
+			);
+			path = SerialAutoPlugin;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9D15289F23274E6500F3C8C9 /* SocketAutoBundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D1528C223274E6500F3C8C9 /* Build configuration list for PBXNativeTarget "SocketAutoBundle" */;
+			buildPhases = (
+				9D15289C23274E6500F3C8C9 /* Sources */,
+				9D15289D23274E6500F3C8C9 /* Frameworks */,
+				9D15289E23274E6500F3C8C9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SocketAutoBundle;
+			productName = SocketAutoBundle;
+			productReference = 9D1528A023274E6500F3C8C9 /* SocketAutoBundle.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		9D1528B523274E6500F3C8C9 /* SocketAutoBundleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D1528C523274E6500F3C8C9 /* Build configuration list for PBXNativeTarget "SocketAutoBundleTests" */;
+			buildPhases = (
+				9D1528B223274E6500F3C8C9 /* Sources */,
+				9D1528B323274E6500F3C8C9 /* Frameworks */,
+				9D1528B423274E6500F3C8C9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9D1528BA23274E6500F3C8C9 /* PBXTargetDependency */,
+			);
+			name = SocketAutoBundleTests;
+			productName = SocketAutoBundleTests;
+			productReference = 9D1528B623274E6500F3C8C9 /* SocketAutoBundleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9D15289823274E6500F3C8C9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Weidong Cao";
+				TargetAttributes = {
+					9D15289F23274E6500F3C8C9 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					9D1528B523274E6500F3C8C9 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 9D15289B23274E6500F3C8C9 /* Build configuration list for PBXProject "SocketAutoBundle" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9D15289723274E6500F3C8C9;
+			productRefGroup = 9D1528A123274E6500F3C8C9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9D15289F23274E6500F3C8C9 /* SocketAutoBundle */,
+				9D1528B523274E6500F3C8C9 /* SocketAutoBundleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9D15289E23274E6500F3C8C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D0D263B23B333CC00992C13 /* README.markdown in Resources */,
+				9D1528B123274E6500F3C8C9 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D1528B423274E6500F3C8C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9D15289C23274E6500F3C8C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D0D263A23B333CC00992C13 /* GCDAsyncSocket.m in Sources */,
+				9DA9185723973D7A00D43B58 /* ZMQSocket.m in Sources */,
+				9DA9185523973D7A00D43B58 /* ZMQContext.m in Sources */,
+				9DA9185623973D7A00D43B58 /* ZMQException.m in Sources */,
+				9D0D264C23B3577D00992C13 /* ORSSerialBuffer.m in Sources */,
+				9DBBA1E323B36F5E00248B59 /* SerialAutoPlugin.m in Sources */,
+				9D1528AC23274E6500F3C8C9 /* SocketAutoPlugin.m in Sources */,
+				9D0D263923B333CC00992C13 /* GCDAsyncUdpSocket.m in Sources */,
+				9D0D265023B3577D00992C13 /* ORSSerialPort.m in Sources */,
+				9D0D264B23B3577D00992C13 /* ORSSerialPacketDescriptor.m in Sources */,
+				9D1528AF23274E6500F3C8C9 /* SocketAutoBundle.m in Sources */,
+				9D0D264E23B3577D00992C13 /* ORSSerialPortManager.m in Sources */,
+				9D0D263023B332C700992C13 /* AsyncSocket.m in Sources */,
+				9DBBA1E023B360DC00248B59 /* Serial.m in Sources */,
+				9D0D264D23B3577D00992C13 /* ORSSerialRequest.m in Sources */,
+				9D0D264F23B3577D00992C13 /* SerialPortTool.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D1528B223274E6500F3C8C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D1528BF23274E6500F3C8C9 /* ___VARIABLE_className___Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9D1528BA23274E6500F3C8C9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9D15289F23274E6500F3C8C9 /* SocketAutoBundle */;
+			targetProxy = 9D1528B923274E6500F3C8C9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		9D1528C023274E6500F3C8C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		9D1528C123274E6500F3C8C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		9D1528C323274E6500F3C8C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks,
+					/AppleInternal/Library/Frameworks,
+				);
+				INFOPLIST_FILE = SocketAutoBundle/Info.plist;
+				INSTALL_PATH = $HOME/Library/Atlas/Plugins;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SocketAutoBundle/zmq",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				OTHER_LDFLAGS = "-lstdc++";
+				PRODUCT_BUNDLE_IDENTIFIER = autoPlugin1001;
+				PRODUCT_NAME = SocketAutoBundle;
+				SKIP_INSTALL = NO;
+				VALID_ARCHS = x86_64;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		9D1528C423274E6500F3C8C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks,
+					/AppleInternal/Library/Frameworks,
+				);
+				INFOPLIST_FILE = SocketAutoBundle/Info.plist;
+				INSTALL_PATH = $HOME/Library/Atlas/Plugins;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SocketAutoBundle/zmq",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				OTHER_LDFLAGS = "-lstdc++";
+				PRODUCT_BUNDLE_IDENTIFIER = autoPlugin1001;
+				PRODUCT_NAME = SocketAutoBundle;
+				SKIP_INSTALL = NO;
+				VALID_ARCHS = x86_64;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		9D1528C623274E6500F3C8C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks,
+					/AppleInternal/Library/Frameworks,
+				);
+				INFOPLIST_FILE = SocketAutoBundleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9D1528C723274E6500F3C8C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks,
+					/AppleInternal/Library/Frameworks,
+				);
+				INFOPLIST_FILE = SocketAutoBundleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9D15289B23274E6500F3C8C9 /* Build configuration list for PBXProject "SocketAutoBundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D1528C023274E6500F3C8C9 /* Debug */,
+				9D1528C123274E6500F3C8C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9D1528C223274E6500F3C8C9 /* Build configuration list for PBXNativeTarget "SocketAutoBundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D1528C323274E6500F3C8C9 /* Debug */,
+				9D1528C423274E6500F3C8C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9D1528C523274E6500F3C8C9 /* Build configuration list for PBXNativeTarget "SocketAutoBundleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D1528C623274E6500F3C8C9 /* Debug */,
+				9D1528C723274E6500F3C8C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9D15289823274E6500F3C8C9 /* Project object */;
+}

@@ -1,0 +1,102 @@
+//错误处理
+finish_with_error(e) {
+	Atlas.Log.error("caught exception", e.className)
+	//判断测试项失败
+	if ( e.class == "com.apple.hwte.rush.module.atlas.exception.TestFailedError" ) {
+		Atlas.Log.error("[TestFailedError]this test item result:FAIL")
+	}else if(e.class =="com.apple.hwte.rush.module.atlas.exception.PluginFailedError"){
+	 	Atlas.Log.error("[PluginFailedError]this test item result:FAIL")
+	}else{
+		raise exception("*****Other error******")
+	}
+	return 0
+}
+
+//记录属性值
+recordAttribute(key,value){
+	Atlas.create_record([key,value],True)
+}
+//记录字符串型数值
+recordStringVal(param){
+	matchStr=param['matchStr']
+	valueStr=param['valueStr']
+	result=param['result']
+	Atlas.create_record([matchStr,valueStr],result)
+	#Atlas.create_record([plugin_name, plugin_command], thisResult,failMsg)
+}
+//记录数值型数值
+recordNumberVal(param){
+	plugin_name=param['plugin_name']
+	plugin_cmd=param['plugin_cmd']
+	valueStr=param['valueStr']
+	limit=param['limit']
+	Atlas.create_record([plugin_name,plugin_cmd],numerify(valueStr),limit["units"],limit)
+
+}
+//解析字符串参数->字典
+parseParams(param_str){
+	#a_string='{"a":1@"b":2}'
+	param_str=Strings.splice(param_str,"@",",")
+	Atlas.Log.info("parseParams result:"+param_str)
+	#println(a_string)
+	resultDic=RList.parse(param_str)
+	Atlas.Log.info("parse result:"+stringify(resultDic))
+	return resultDic
+}
+
+
+getTestMode(){
+    test_mode_name = Atlas.Unit["test_mode_name"]
+		#"Production", "GRR",
+    return test_mode_name
+}
+
+//保存本地记录，一天一个
+#csvHeader=['column1','column2','column3']
+#csvData=['123','456','789']
+#saveLocalCsv('/vault/CSV',csvHeader,csvData)
+saveDailyCsv(path,csvHeader,csvData){
+	homePATH= path #"/vault/CSV"
+	if(!pathIsExists(homePATH)){
+		System.mkdir(homePATH)
+	}
+	homePATH=homePATH+"/"+ getCurrentYM()
+	if(!pathIsExists(homePATH)){
+		System.mkdir(homePATH)
+	}
+	filePath=homePATH + "/" +getCurrentYMD() +".csv"
+	if(!fileIsExists(filePath)){
+		csvDataArr=[csvHeader]+[csvData]
+		BasicCSV.save(filePath,csvDataArr)
+	}else{
+		row_data=BasicCSV.load(filePath)
+		csvDataArr=row_data :: csvData
+		println(csvDataArr)
+		BasicCSV.save(filePath,csvDataArr)
+	}
+}
+#20190613
+getCurrentYMD(){
+	return System.timestring("%Y%m%d")
+}
+#201906
+getCurrentYM(){
+	return System.timestring("%Y%m")
+}
+#2019/06/03 19:18:34
+getCurrentTime(){
+	return System.timestring("%Y/%m/%d %H:%M:%S")
+}
+#判断文件夹是否存在
+pathIsExists(path){
+	System.ls(path) onError -> return False
+	return True
+}
+#判断文件是否存在
+fileIsExists(filePath)
+{
+	filePath = "\"" + filePath + "\""
+	cmd = "ls " + filePath
+  #println(cmd)
+	return System.system(cmd) == 0
+}

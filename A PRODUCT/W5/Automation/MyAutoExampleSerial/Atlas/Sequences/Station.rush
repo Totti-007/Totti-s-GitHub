@@ -1,0 +1,192 @@
+# Atlas Logging:
+#	 =>	Atlas.Log.info(arguemnts...)
+#	 =>	Atlas.Log.debug(arguments...)
+#	 =>	Atlas.Log.error(arguments...)
+
+# Atlas Launch Station Plugin:
+#	 =>	Atlas.launch_plugin(bundle, plugin)
+#	 =>	Atlas.launch_plugin(bundle, plugin, name)
+#	 =>	Atlas.launch_plugin(bundle, plugin, name, setup_parameters)
+
+# Atlas Teardown Station Plugin:
+#	 =>	Atlas.teardown_plugin(name)
+#	 =>	Atlas.teardown_plugin(name, teardown_parameters)
+
+#
+# App Setup:
+# * Called when app first connects to the atlas core and before the station is started
+# * Called when app first connects to the atlas core and before the station is started
+#
+
+app_setup(app)
+{
+    app.settings = {
+        "station-name" : "My AutoStation",
+        "force-fullscreen" : :FALSE:,
+
+        ###=============
+        #   for automachine part, remove "start-button" configure
+        ###=============
+        "start-button" : {
+            "groups" : [{
+                "identifier" : "Group-1",
+                "units" : [
+                        {
+                            "identifier" : "Unit-1",
+                            "userinfo":{"slot":1,"ip":"169.254.1.32","dut_sn":"001"}
+                        },
+                        {
+                            "identifier" : "Unit-2",
+                            "userinfo":{"slot":2,"ip":"169.254.1.33","dut_sn":"002"}
+                        }
+                        ]
+            }]
+        },
+        "custom-test-modes" : [
+            {
+                "name" : "GRR",
+                "base-test-mode" : "LineBringup"
+            },
+            {
+                "name" : "Calibration",
+                "base-test-mode" : "LineBringup"
+            },
+        ]
+    }
+}
+
+#
+# Station Setup:
+# * Called when core is starting your station for the first time (app start)
+#
+getServerIP()
+{
+    output=System.command(System.getenv("HOME") +"/Library/Atlas/Configs/ShowIP/ScanIP.sh")
+    #println(output)
+    if(output.code == 0){
+        ip_str=Strings.splice(output.out,"\n","")
+        ip_list=Strings.tokenize(ip_str," ")
+        println("raw_ip_list:"+represent(ip_list))
+
+        for ip in ip_list{
+            if(ip != "" && Strings.range_of_substring(ip, "169.254.") != :NIL:){
+                return ip
+                #println("ip:"+ip)
+            }
+        }
+        #println("available_ip_list:"+represent(available_ip_list))
+        if(size(available_ip_list) == 0){
+            raise exception("get ip error!")
+        }
+
+    }else{
+        raise exception("get ip error!")
+    }
+}
+
+station_setup()
+{
+    # Log : Call takes any types and is variable argument
+    # Atlas.Log.info(arguemnts...)
+    # Atlas.Log.debug(arguments...)
+    # Atlas.Log.error(arguments...)
+
+    Atlas.Log.info("Setting up station")
+
+    # Plugin Launch : Station plugin are visible to all units.
+    # Atlas.launch_plugin(bundle, plugin)
+    # Atlas.launch_plugin(bundle, plugin, name)
+    # Atlas.launch_plugin(bundle, plugin, name, setup_parameters)
+
+    ###=============
+    #   for automachine part, launch plugin
+    ###=============
+    config={
+        "numberOfGroups":"1",
+        "numberOfUnits":"2", 
+        "LogName":"AutoExample.csv",
+        "zmqPubPort":"10052"
+    }
+    Atlas.launch_plugin("SocketAutoBundle","SerialAutoPlugin",config)
+    ###=============
+    #   for automachine part, open server socket listening
+    ###=============
+    #server_ip=getServerIP()
+    
+    Globals.Testway = Atlas.call_plugin("SerialAutoPlugin","scan")
+    Atlas.Log.info("Testmode:",Globals.Testway)
+    if(Globals.Testway == "OK")
+    {
+        params={
+            "baud":9600,
+        }
+        Atlas.call_plugin("SerialAutoPlugin", "open",params)
+    }
+
+}
+
+#
+# Station Teardown:
+# * Called when core is tearing down your station (app quit)
+#
+
+station_teardown()
+{
+    Atlas.Log.info("Station teardown")
+
+    # Plugin Teardown :
+    # Atlas.teardown_plugin(name)
+    # Atlas.teardown_plugin(name, teardown_parameters)
+    Atlas.teardown_plugin("SerialAutoPlugin")
+
+}
+
+#
+# Unit Setup:
+# * Called only when core receives new unit.
+#
+getRushFiles()
+{
+    return [
+        "UI.rush",
+        "Helper.rush",
+        "PDCA.rush"
+    ]
+}
+
+unit_setup(unit)
+{
+    Atlas.Log.info("Started", unit)
+
+    rushFiles=getRushFiles()
+    Atlas.Log.info("Started Production", unit)
+    rushFiles = rushFiles + ["Test.rush"]
+    apply(Atlas.set_sequence, [unit] + rushFiles)
+
+}
+
+#
+# Unit Setup:
+# * <Fill In>
+#
+
+unit_teardown(unit)
+{
+    Atlas.Log.info(unit, "Finished")
+    #Atlas.teardown_plugin(unit,"MySerialPlugin")
+
+}
+
+group_setup(group)
+{
+    Atlas.Log.info("Setting up Group")
+    #Atlas.launch_plugin(group, "FooBar", "Foo")
+    for unit in group.units {
+        unit_setup(unit)
+    }
+}
+
+group_teardown(group)
+{
+    Atlas.Log.info("Group teardown")
+}

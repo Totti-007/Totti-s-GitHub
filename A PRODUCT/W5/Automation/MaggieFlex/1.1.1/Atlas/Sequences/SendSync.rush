@@ -1,0 +1,543 @@
+finishWithError(e) {
+     Atlas.Log.error("caught exception", e.className)
+     if ( e.class == "UserException" )
+     {
+          Atlas.Log.error("Custom Exception Behaviour")
+     }
+     else
+     {
+          Atlas.Log.info("finishWithError")
+     }
+}
+
+exampleExeception()
+{
+     if :TRUE:
+     {
+          raise Atlas.Exceptions.InternalError
+     }
+     else
+     {
+          Atlas.Log.info("exampleExeception")
+     }
+}
+
+isProductionModel()
+{
+    test_mode_name = Atlas.Unit["test_mode_name"]
+    return test_mode_name == "Production"
+}
+
+isGrrModel()
+{
+    test_mode_name = Atlas.Unit["test_mode_name"]
+    return test_mode_name == "GRR"
+}
+
+
+configGlobal()
+{
+     Globals.csvHeader = {"Enable":0,"ItemName":1,"Device":2,"NeedShow":3,"Prefix":4,"Suffix":5,"Plugin":6,"Function":7,
+          "Command":8,"Delay":9,"Choose":10,"Max":11,"Min":12}
+}
+
+getInfo()
+{
+    Atlas.execute_test("Scan SN",postInfo,"ScanSN",Globals.scan_sn) onError e -> finishWithError(e)
+
+    MAGGIESN= Atlas.call_plugin("Dut","MAGGIESN")
+    Atlas.Log.info("Receive_MaggieSN",MAGGIESN)
+    Atlas.execute_test("MAGGIE",postInfo,"MAGGIE",MAGGIESN) onError e -> finishWithError(e)
+
+    S_BUILD= Atlas.call_plugin("Dut","S_BUILD")
+    Atlas.Log.info("Receive_S_BUILD",S_BUILD)
+    Atlas.execute_test("S_BUILD",postInfo,"S_BUILD",S_BUILD) onError e -> finishWithError(e)
+
+    BUILD_EVENT= Atlas.call_plugin("Dut","BUILD_EVENT")
+    Atlas.Log.info("Receive_BUILD_EVENT",BUILD_EVENT)
+    Atlas.execute_test("BUILD_EVENT",postInfo,"BUILD_EVENT",BUILD_EVENT) onError e -> finishWithError(e)
+
+    BUILD_MATRIX_CONFIG= Atlas.call_plugin("Dut","BUILD_MATRIX_CONFIG")
+    Atlas.Log.info("Receive_BUILD_MATRIX_CONFIG",BUILD_MATRIX_CONFIG)
+    Atlas.execute_test("BUILD_MATRIX_CONFIG",postInfo,"BUILD_MATRIX_CONFIG",BUILD_MATRIX_CONFIG) onError e -> finishWithError(e)
+
+    STATION_ID= Atlas.call_plugin("Dut","STATION_ID")
+    Atlas.Log.info("Receive_FIXTURE_ID",STATION_ID)
+    Atlas.execute_test("FIXTURE_ID",postInfo,"STATION_ID",STATION_ID) onError e -> finishWithError(e)
+
+    Atlas.execute_test("TesterID",TesterID,Atlas.Unit["unit_identifier"]) onError e -> finishWithError(e)
+
+}
+
+TestProcess()
+{
+    # Config Msg
+    if isProductionModel()
+    {
+    	  getInfo()
+    }
+    else
+    {
+        Atlas.execute_test("Scan SN",postInfo,"ScanSN",Globals.scan_sn) onError e -> finishWithError(e)
+        Atlas.execute_test("TesterID",TesterID,Atlas.Unit["unit_identifier"]) onError e -> finishWithError(e)
+    }
+
+    # Start Test Process
+    runTestItembyCSV() #core test in CSV
+
+}
+
+main()
+{
+     Atlas.Log.info("Start Test")
+     Globals.scan_sn = ""
+     configGlobal()
+     unitID =  Atlas.Unit["unit_identifier"]
+     Globals.Testway = Atlas.call_plugin("SerialAutoPlugin","isAuto")
+     Atlas.Log.info("Testmode:",Globals.Testway)
+     if isProductionModel()
+     {
+       #Production mode
+         Atlas.call_plugin_sync("Fixture","removePassNum")
+         Atlas.call_plugin_sync("Fixture","waitforRealStart")
+
+         Atlas.call_plugin_sync("Fixture","mainBoardCommand",{"Delay":2,"Command":"ctrl_start(ALL)"})
+
+         if(Globals.Testway == "Auto"){
+            SN = Auto_getSN()
+         }else{
+            # SN = Atlas.execute_test("Get DUT Serial Number", DUT_getSNScanned)
+            SN = DUT_getSNScanned()
+         }
+         Atlas.execute_test("Get DUT Serial Number",addDeviceAttribute,"Serialnumber",SN)
+
+         #  Check SN,If SN nil,Return OK
+         if Atlas.call_plugin("Dut","check_config",{"SN":SN}) == "OK" && size(SN) == 17
+         {
+            # Open Socket
+            Atlas.call_plugin("Dut","openSocket")
+            # Wait Fixture Start
+            Atlas.call_plugin_sync("Fixture","waitforFixtureStart")
+            # Create file
+            Atlas.call_plugin("Dut","GetSN",{"SN":SN})
+            # Start Upload PDCA
+            startDRCB(SN)
+            Atlas.Log.info("**********ProductionModel，Upload PDCA********")
+            TestProcess()
+            # Finish Upload PDCA
+            finishDRCB(SN)
+          }
+          else
+          {
+              if size(SN) < 1
+              {
+                  ShowInWindow("Config SN is Wrong","SN is NULL")
+              }
+              else
+              {
+                  ShowInWindow("Config SN is Wrong",Atlas.call_plugin("Dut","check_config",{"SN":SN}))
+              }
+              raise exception("Config SN is Wrong")
+          }
+
+     }
+     else if isGrrModel()
+     {
+         # Check PassWord
+         if GRRPassNum()
+         {
+              Atlas.call_plugin_sync("Fixture","waitforRealStart")
+              Atlas.call_plugin_sync("Fixture","mainBoardCommand",{"Delay":2,"Command":"ctrl_start(ALL)"})
+
+              # SN = Atlas.execute_test("Get DUT Serial Number", DUT_getSNScanned)
+              if(Globals.Testway == "Auto"){
+                SN = Auto_getSN()
+               }else{
+                  # SN = Atlas.execute_test("Get DUT Serial Number", DUT_getSNScanned)
+                  SN = DUT_getSNScanned()
+               }
+              # Check GRR SN
+              if Atlas.call_plugin("Dut","CheckGRRSN",{"SN":SN}) != "OK"
+              {
+                   if size(SN) < 1
+                   {
+                      ShowInWindow("GRR SN is Wrong","SN is NULL")
+                   }
+                   else
+                   {
+                      ShowInWindow("GRR SN is Wrong","SN is " + SN)
+                   }
+                   raise exception("Config SN is Wrong")
+              }
+              else
+              {
+                  Atlas.call_plugin("Dut","openSocket")
+                  Atlas.call_plugin_sync("Fixture","mainBoardCommand",{"Command":"ctrl_start(ALL)"})
+                  Atlas.call_plugin_sync("Fixture","waitforFixtureStart")
+                  Atlas.call_plugin("Dut","GetSN",{"SN":SN})
+                  # Start Upload PDCA
+                  startDRCB(SN)
+                  Atlas.Log.info("**********GRRMode，Upload PDCA********")
+                  # GRR Flag
+                  Atlas.execute_test("Audit Test",postInfo,"Audit Test","Yes") onError e -> finishWithError(e)
+                  TestProcess()
+                  # Finish Upload PDCA
+                  finishDRCB(SN)
+             }
+          }
+      }
+}
+
+# PassWord, Only GRR First Test
+GRRPassNum()
+{
+    if(Globals.Testway == "Auto"){
+        return True
+    }
+    if !Atlas.call_plugin("TE_Password","CheckPassNum",{"unit":Atlas.Unit["unit_identifier"]}) == "OK"
+    {
+        passNum = Atlas.execute_test("Get Password for TE", queryPword,{})
+        if passNum["Pword"] == "tungsten"
+        {
+            # Save PassWord
+            Atlas.call_plugin("TE_Password","PreservePassNum",{"PassNum":"tungsten"})
+            return True
+        }
+        else
+        {
+            ShowInWindow("Password is Wrong","Pls input again!")
+            Atlas.call_plugin("TE_Password","PreservePassNum",{"PassNum":"erroe"})
+            raise exception("Password error")
+        }
+    }
+    else
+    {
+        return True
+    }
+}
+
+runTestItembyCSV()
+{
+     Globals.csv = BasicCSV.load(System.getenv("HOME") + "/Library/Atlas/Resources/sequence/"+"SendSync_sequence.csv")
+     itemValues = "value"
+     for index in range(1,size(Globals.csv))
+     {
+          Atlas.Log.info("csv index content-------",stringify(Globals.csv[index]),stringify(size(Globals.csv)))
+          Enable = Globals.csv[index][Globals.csvHeader["Enable"]]
+          ItemName = Globals.csv[index][Globals.csvHeader["ItemName"]]
+          Device = Globals.csv[index][Globals.csvHeader["Device"]]
+
+          NeedShow = Globals.csv[index][Globals.csvHeader["NeedShow"]]
+          Prefix = Globals.csv[index][Globals.csvHeader["Prefix"]]
+          Suffix = Globals.csv[index][Globals.csvHeader["Suffix"]]
+
+          Plugin = Globals.csv[index][Globals.csvHeader["Plugin"]]
+          Function = Globals.csv[index][Globals.csvHeader["Function"]]
+          Command = Globals.csv[index][Globals.csvHeader["Command"]]
+          Delay = Globals.csv[index][Globals.csvHeader["Delay"]]
+          Choose  = Globals.csv[index][Globals.csvHeader["Choose"]]
+          Max   = Globals.csv[index][Globals.csvHeader["Max"]];
+          Min   = Globals.csv[index][Globals.csvHeader["Min"]];
+
+          testConfig = {"Device":Device,"Command":Command,"Delay":Delay,"TestName":ItemName,"Choose":Choose,"Max":Max,"Min":Min}
+          Atlas.Log.info("\n****************************\n",testConfig)
+
+          if Plugin == "Dut"
+          {
+              if NeedShow == "YES"
+              {
+                  myLocalLimits = Atlas.load_limits_file("limits/SendSyncLimits.csv")
+                  limit = myLocalLimits["MP"][ItemName]
+                  Atlas.Log.info(" ---- resistance limit --",limit)
+
+                  value = Atlas.call_plugin(Plugin,Function,testConfig)
+                  Atlas.Log.info("---command---value---",Function,value)
+
+                  Atlas.execute_test(ItemName,addRecord,ItemName,value,limit,testConfig) onError e -> finishWithError(e)
+
+                  unitID =  Atlas.Unit["unit_identifier"]
+                  #Just for save toal CSV
+                  itemValues = itemValues + "," + stringify(value)
+              }
+              else
+              {
+                  Atlas.call_plugin(Plugin,Function,testConfig)
+                  Atlas.execute_test(ItemName,attachTest,Command) onError e -> finishWithError(e)
+              }
+
+          }
+          else
+          {
+              Atlas.call_plugin_sync(Plugin,Function,testConfig)
+              Atlas.execute_test(ItemName,attachTest,Command) onError e -> finishWithError(e)
+          }
+     }
+
+     itemValues = tokenize(itemValues,",")
+     ItemData = [itemValues]
+
+     # Create CSV
+     Atlas.call_plugin("Dut","writeCsvFile",{"values":itemValues})
+}
+
+RecordSN(SN,config){
+     Atlas.Log.info("SN:",SN)
+     Atlas.add_device_attribute("SN",SN);
+}
+
+
+TesterID(unitName)
+{
+     Atlas.Log.info("TesterID",unitName)
+     if Atlas.Unit["unit_identifier"] == "Unit 1"
+     {
+        Atlas.create_record(["TesterID", "", ""],1,"")
+     }
+     else
+     {
+        Atlas.create_record(["TesterID", "", ""],2,"")
+     }
+     Atlas.add_device_attribute("TesterID",unitName);
+}
+
+attachTest(name)
+{
+     Atlas.create_record([name], True)
+}
+
+
+postInfo(name,info){
+     Atlas.Log.info(name,info)
+     Atlas.add_device_attribute(name,info);
+}
+
+addRecord(item,res,limit){
+     Atlas.create_record([item],numerify(res), limit["units"], limit)
+}
+
+addDeviceAttribute(key,value){
+     Atlas.Log.info(key+":"+value)
+     Atlas.create_record([key,value],True)
+     Atlas.add_device_attribute(key,value);
+}
+
+ShowInWindow(text,text1){
+     layout = []
+     label = {
+        "type": "label",
+        "text" : text
+     }
+     label1 = {
+        "type": "label",
+        "text" : text1
+     }
+
+     layout = layout + [label] +[label1]
+
+     custom = {
+     "type" : "custom",
+     "layout" : layout
+     }
+
+    value = Atlas.call_plugin_sync("CallApp", "call-app", {"cmd" : "show-form", "params" : custom})
+}
+
+queryPword()
+{
+  layout= []
+    label = {
+    "type": "label",
+    "text" : "TE Password:"
+  }
+  type = {
+    "type" : "field",
+    "id" : "Pword"
+  }
+  layout = layout + [label] + [type]
+
+  pword_request = {
+    "type" : "custom",
+    "layout" : layout
+  }
+  value = Atlas.call_plugin_sync("CallApp", "call-app", {"cmd" : "show-form", "params" : pword_request})
+  Atlas.Log.info("Input: " + represent(value))
+
+  return value
+}
+
+DUT_getSNScanned()
+{
+  Atlas.Log.info("UNIT INFO: " + represent(Atlas.Unit))
+  userInfo = Atlas.Unit.user_info
+  Atlas.Log.info("userInfo " + stringify(userInfo))
+  units = userInfo["units"]
+  Atlas.Log.info("units==> " + stringify(units))
+  layout = [];
+
+  for i in range(units) {
+    label = {
+      "type": "label",
+      "text" : units[i]
+    }
+    type = {
+      "type" : "field",
+      "id" : units[i]
+    }
+    layout = layout + [label] + [type]
+  }
+  Atlas.Log.info("layout: " + stringify(layout))
+
+  serial_number_request = {
+    "type" : "custom",
+    "layout" : layout
+  }
+
+  value = Atlas.call_plugin_sync("CallApp", "call-app", {"cmd" : "show-form", "params" : serial_number_request})
+  Atlas.Log.info("scan return " + stringify(value))
+  Atlas.Log.info("unit " + Atlas.Unit.unit_identifier)
+
+  if (hasDuplicateValueInDictionary(value))
+  {
+      raise exception("has duplicate serial number")
+  }
+
+  serial_number = value[Atlas.Unit.unit_identifier] onError -> serial_number = "NA"
+  if (size(serial_number) < 11)
+  {
+      # serial_number = "NA"
+      raise exception("serial number error")
+  }
+  Globals.scan_sn = serial_number
+
+  if (size(serial_number) > 21)
+  {
+      serial_number = Atlas.call_plugin("Dut","getflexSN",{"SIPSN":serial_number})
+
+      Atlas.Log.info("show link sn " + stringify(serial_number))
+      if(size(serial_number) != 17)
+      {
+          raise exception("SIP SN Link Error")
+      }
+  }
+
+  Atlas.add_device_attribute("serialnumber", serial_number);
+
+  return serial_number
+}
+Auto_getSN()
+{
+  Atlas.Log.info("UNIT INFO: " + represent(Atlas.Unit))
+  userInfo = Atlas.Unit.user_info
+  Atlas.Log.info("userInfo " + stringify(userInfo))
+  # units = userInfo["units"]
+  # Atlas.Log.info("units==> " + stringify(units))
+
+  serial_number = Atlas.Unit.user_info.dut_sn onError -> serial_number = "NA"
+
+  Atlas.Log.info("Globals.scan_sn:",serial_number)
+  # serial_number = value[Atlas.Unit.unit_identifier] onError -> serial_number = "NA"
+  if (size(serial_number) < 11)
+  {
+      # serial_number = "NA"
+      raise exception("serial number error")
+  }
+  Globals.scan_sn = serial_number
+
+  if (size(serial_number) > 21)
+  {
+      serial_number = Atlas.call_plugin("Dut","getflexSN",{"SIPSN":serial_number})
+
+      Atlas.Log.info("show link sn " + stringify(serial_number))
+      if(size(serial_number) != 17)
+      {
+          raise exception("SIP SN Link Error")
+      }
+  }
+
+   # Atlas.add_device_attribute("serialnumber", serial_number);
+  return serial_number
+}
+
+hasDuplicateValueInDictionary(dict)
+{
+  duplicates = {}
+  exemptions = 0
+  Atlas.Log.info("hasDuplicateVal input " + represent(dict))
+  for i in dict  {
+  if(size(dict[i]) > 0) {
+    Atlas.Log.info(represent(dict[i]) + " has size " + stringify(size(dict[i])))
+      duplicates[stringify(dict[i])] = 1
+  } else {
+    exemptions = exemptions + 1
+  }
+  }
+
+  return (size(duplicates) + exemptions) != size(dict)
+}
+
+inputAlertView(text){
+     layout = []
+     label = {
+          "type": "label",
+          "text" : text
+          }
+     type = {
+        "type" : "field",
+        "id" : "input"   #输入相关的信息
+     }
+
+     layout = layout + [label] +[type]
+
+     custom = {
+          "type" : "custom",
+          "layout" : layout
+     }
+     value = Atlas.call_app("show-form", custom)
+     return value["input"]
+}
+
+startDRCB(sn)
+{
+     softwareversion = "1.1.1"
+     limitsversion = "1"
+
+     # softwareversion
+     Atlas.call_plugin("Dut","SoftwareVersion",{"softwareversion":softwareversion})
+     dataReportingConfig =
+     {
+          "serialnumber" : sn,
+          "softwarename" : "MAGGIE FLEX",
+          "softwareversion" : softwareversion,
+          "limitsversion" : limitsversion
+     }
+     Atlas.execute_test("Start Data Reporting",Atlas.call_plugin,"DRCB","startDataReporting",dataReportingConfig)
+
+     if isProductionModel()
+     {
+          System.sleep(0.4)
+          Atlas.execute_test("amIOK",Atlas.call_plugin,"DRCB","amIOK",{"serialnumber" : sn})
+     }
+     else
+     {
+          Atlas.Log.info("startDRCB -------> Disable amIOK")
+     }
+
+}
+
+finishDRCB(sn)
+{
+
+    Atlas.call_plugin_sync("Fixture","waitforRealFinsh")
+
+    if isProductionModel()
+    {
+         System.sleep(0.4)
+         Atlas.execute_test("amIOK",Atlas.call_plugin,"DRCB","amIOK",{"serialnumber" : sn})
+    }
+    else
+    {
+         Atlas.Log.info("finishDRCB -------> Disable amIOK")
+    }
+
+    Atlas.execute_test("Finish DRCB",Atlas.call_plugin,"DRCB","finish");
+}

@@ -1,0 +1,8 @@
+#!/bin/bash
+echo "running rc.groundhog.ip.delay on `date`"
+/usr/sbin/ipconfig waitall
+/usr/sbin/scutil --set ComputerName "APPL_CN-PORTAHOG_3_DEVELOPMENT1"
+/usr/sbin/scutil --set LocalHostName "APPL-CN-PORTAHOG-3-DEVELOPMENT1"
+echo "rc.groundhog.power.delay done on `date`"
+
+exit 0

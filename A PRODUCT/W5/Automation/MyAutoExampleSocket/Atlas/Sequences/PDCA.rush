@@ -1,0 +1,36 @@
+addStationAttribute(name, value)
+{
+  Atlas.create_record([name,value], True)
+  Atlas.add_station_attribute(name, value);
+}
+//增加属性报告
+addDeviceAttribute(key,value){
+     Atlas.Log.info(key+":"+value)
+		 Atlas.create_record([key,value],True)
+     Atlas.add_device_attribute(key,value);
+}
+addFixtureIDAndTestHeadID(fixture_id, test_head_id) {
+  Atlas.create_record([fixture_id,test_head_id], True)
+  Atlas.add_fixture_id_and_test_head_id(fixture_id,test_head_id)
+}
+addBlobFile(path){
+  Atlas.Log.info("blob file path:",path)
+  Atlas.execute_test("Add blob file",Atlas.call_plugin,"DRCB","addBlob",{"blobpath":path})
+}
+//PDCA开始上传数据
+startDRCB(config){
+     # dataReportingConfig = {
+     #      "serialnumber" : sn,
+     #      "softwarename" : "My Serial Test",
+     #      "softwareversion" : "1.0.0",
+     #      "limitsversion" : "1.0.0"
+     # }
+     Atlas.execute_test("Start Data Reporting",Atlas.call_plugin,"DRCB","startDataReporting",dataReportingConfig)
+
+}
+//PDCA结束上传数据
+finishDRCB(sn){
+     Atlas.execute_test("check sn",Atlas.call_plugin,"DRCB","amIOK",{"serialnumber" : sn})
+     Atlas.execute_test("Finish DRCB",Atlas.call_plugin,"DRCB","finish");
+
+}

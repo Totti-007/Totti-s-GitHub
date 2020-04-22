@@ -1,0 +1,21 @@
+#!/bin/bash
+set -x
+
+NTP_IPADDR=`cut -f2 -d' ' < /etc/ntp.conf`
+
+if [ "${NTP_IPADDR}" != "" -a "${NTP_IPADDR}" != "17.239.1.140" ] ; then
+    echo "running rc.groundhog.time.delay on `date`"
+    /usr/sbin/systemsetup -setusingnetworktime off
+    sleep 5
+    /usr/sbin/ntpdate "${NTP_IPADDR}"
+    echo "groundhog: setting time returned $?"
+    sleep 5
+    /usr/sbin/ntpdate "${NTP_IPADDR}"
+    echo "groundhog: setting time returned $?"
+    /usr/sbin/systemsetup -setusingnetworktime on
+else
+    echo "rc.groundhog.time.delay: Valid NTP address not found."
+fi
+echo "rc.groundhog.time.delay done on `date`"
+exit 0
+

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "running rc.groundhog.power.delay on `date`"
+/bin/sleep 5
+/usr/bin/pmset -a displaysleep 0 disksleep 0 sleep 0 womp 1 ring 0 autorestart 1 powerbutton 0
+echo "groundhog: setting power management settings returned $?"
+echo "rc.groundhog.power.delay done on `date`"
+
+exit 0

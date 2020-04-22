@@ -1,0 +1,115 @@
+#!/bin/bash
+
+echo "running rc.groundhog.postprocess as `id`"
+
+_PostProcessSource="/PostProcess"
+RebootedOnce="/PostProcess/RebootedOnce"
+
+# Set our status to an initial value of 0
+_status=0
+
+# function installOurPackage
+# usage: installOurPackage /path/to/packages
+#
+# This function attempts to process any packages or mpkgs it encounters
+# at the path specified.
+function installOurPackage {
+	if [ "$#" -ne 1 ]; then
+    		echo "usage: $0 <argument>"
+		exit 1
+	fi
+
+	localPkgDir="${1}"
+	for installerPkg in "${localPkgDir}"/*pkg; do
+	if [[ ! -e ${installerPkg} ]]; then
+		echo "Nothing to see here, move along. No pkgs or mpkgs found."
+		break
+	fi
+
+		echo "installing ${installerPkg}"
+		/usr/sbin/installer -allowUntrusted -dumplog -pkg "${installerPkg}"  -target /
+		_status=$?
+
+		echo "Installer ${installerPkg} returned ${_status}."
+
+		if [[ ${status} -ne "0" ]]; then
+			echo "Dying at installer, returned ${_status} on ${installerPkg}"
+			exit ${_status}
+		fi
+
+		# If _movePkg is not disabled, then attempt to move the installed items aside.
+		if [[ "${_movePkg}" != "0" ]]; then
+			echo "Moving ${installerPkg} out of the way..."
+			mv "${installerPkg}" "${installerPkg}.done"
+		fi
+	done
+}
+
+# This will iterate through the directory specified in _PostProcessSource and
+# mount each disk image it encounters.
+echo "processing dmgs..."
+for installerDmg in "${_PostProcessSource}"/*.dmg; do
+	if [[ ! -e "${installerDmg}" ]]; then
+		echo "Nothing to see here, move along. No .dmg files found."
+		break
+	fi
+	_bundleMountPoint="`hdiutil attach "${installerDmg}"  < /dev/null | awk -F\t ' END {print $NF} '`"
+	_status=$?
+	# hdiutil attach output is intentionally very predictable -- this allows
+	# tools like this one to parse it to determine the .dmg mount point.
+
+	# If the hdiutil attach did not exit cleanly, this script will exit
+	# with the same nonzero exit value as the failed command.
+    	if [ ${_status} -ne 0 ]; then
+		echo "Dying at hdiutil attach for ${installerDmg}"
+		exit ${_status}
+    	fi
+
+	# This is kinda cheesy: turn moving packages off, since we're a dmg
+	_movePkg=0
+
+	# For every .pkg or .mpkg we encounter in the mounted disk image, attempt
+	# to install it noisily.
+	installOurPackage "${_bundleMountPoint}"
+
+	# Unmount and detach the disk image.
+	hdiutil detach "${_bundleMountPoint}"
+
+	# If we get to this point, we have exited cleanly from everything we have attempted.
+	# Note that *any* errors cause us to give up.
+	echo "Moving ${installerDmg} out of the way"
+    	mv "${installerDmg}" "${installerDmg}.done"
+done
+
+# This does the same thing, but for bare .pkg's and .mpkg's.
+# It will iterate through the directory specified in _PostProcessSource and
+# attempt to install each package it sees.
+
+# First, enable moving packages so they're moved out of the way when they are installed:
+_movePkg=1
+
+# Install the packages
+installOurPackage "${_PostProcessSource}"
+
+chmod 777 "/vault"
+
+#networksetup -setmanual "Thunderbolt Ethernet" 169.254.2.100 255.255.255.0
+networksetup -setmanual "USB Ethernet" 169.254.1.1 255.255.0.0
+    
+sudo ln -s /AppleInternal/Applications/Hyperion.app /Users/gdlocal/Desktop/Hyperion
+
+#Disable NCM mode
+sudo defaults write /Library/Preferences/com.apple.usbmuxd DisallowNCMMode -bool true
+    
+# This is required of our Swift based station.
+rm -rf /Applications/Xcode.app
+mv "/Library/Developer/debugserver" "/Library/Developer/Toolchains/swift-latest.xctoolchain/System/Library/PrivateFrameworks/LLDB.framework/Versions/A/Resources"
+
+chmod +x /Users/gdlocal/Library/Atlas/Resources/convertTestPlan.swift
+xattr -c /Users/gdlocal/Library/Atlas/Resources/convertTestPlan.swift
+
+if [[ ! -e $RebootedOnce ]]; then
+    /usr/bin/touch $RebootedOnce
+    /sbin/reboot
+fi
+

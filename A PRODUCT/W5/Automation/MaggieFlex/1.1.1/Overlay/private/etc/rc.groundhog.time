@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "running rc.groundhog.time on `date`"
+echo "=> Trying to run rc.groundhog.time.delay"
+#nohup sh /etc/rc.groundhog.time.delay &
+/etc/rc.groundhog.time.delay
+sleep 3
+echo "<== rc.groundhog.time done on `date`"
+sleep 3
+exit 0
+

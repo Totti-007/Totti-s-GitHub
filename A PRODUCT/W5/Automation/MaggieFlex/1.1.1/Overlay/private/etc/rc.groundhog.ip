@@ -1,0 +1,6 @@
+#!/bin/bash
+/etc/rc.groundhog.ip.delay
+sleep 3
+echo "<== rc.groundhog.ip done on `date`"
+sleep 3
+exit 0

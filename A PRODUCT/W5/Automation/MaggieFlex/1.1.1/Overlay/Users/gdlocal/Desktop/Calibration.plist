@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>calibrateTable</key>
+	<array>
+		<dict>
+			<key>Result</key>
+			<real>5.017663095749237e-12</real>
+			<key>Zin</key>
+			<string>100M</string>
+			<key>freqHz</key>
+			<integer>80</integer>
+			<key>path</key>
+			<string>CRN</string>
+		</dict>
+		<dict>
+			<key>Result</key>
+			<real>1.789414222762445e-11</real>
+			<key>Zin</key>
+			<string>100M</string>
+			<key>freqHz</key>
+			<integer>80</integer>
+			<key>path</key>
+			<string>SIG</string>
+		</dict>
+		<dict>
+			<key>Result</key>
+			<real>3.257262295980817e-11</real>
+			<key>Zin</key>
+			<string>100M</string>
+			<key>freqHz</key>
+			<integer>80</integer>
+			<key>path</key>
+			<string>REF</string>
+		</dict>
+	</array>
+	<key>CarnelianSN</key>
+	<string>123456</string>
+	<key>Timestamp</key>
+	<real>1524478893.370338</real>
+</dict>
+</plist>

@@ -1,0 +1,12 @@
+--- !tapi-tbd-v3
+archs:           [ x86_64 ]
+uuids:           [ 'x86_64: 902A1BDA-FB71-3610-993A-18D18D27AFDF' ]
+platform:        macosx
+install-name:    /AppleInternal/Library/Frameworks/FactoryDeviceControl.framework/Versions/A/FactoryDeviceControl
+objc-constraint: none
+exports:         
+  - archs:           [ x86_64 ]
+    symbols:         [ _FactoryDeviceControlVersionNumber, _FactoryDeviceControlVersionString, 
+                       _domain_string_to_type, _domain_type_to_string, _self_domain ]
+    objc-classes:    [ FDCControlBitHeader, FDCControlBitState, FactoryDeviceController ]
+...

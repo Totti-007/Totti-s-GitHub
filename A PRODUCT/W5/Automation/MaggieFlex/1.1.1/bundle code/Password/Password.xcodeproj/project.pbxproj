@@ -1,0 +1,428 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		020E44B122956EA8007615A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 020E44B022956EA8007615A1 /* Foundation.framework */; };
+		020E44B322956EA8007615A1 /* CoreTestFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 020E44B222956EA8007615A1 /* CoreTestFoundation.framework */; };
+		020E44B922956EA8007615A1 /* TE_Password.m in Sources */ = {isa = PBXBuildFile; fileRef = 020E44B822956EA8007615A1 /* TE_Password.m */; };
+		020E44BC22956EA8007615A1 /* Password.m in Sources */ = {isa = PBXBuildFile; fileRef = 020E44BB22956EA8007615A1 /* Password.m */; };
+		020E44BE22956EA8007615A1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 020E44BD22956EA8007615A1 /* Images.xcassets */; };
+		020E44C422956EA8007615A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 020E44B022956EA8007615A1 /* Foundation.framework */; };
+		020E44C522956EA8007615A1 /* CoreTestFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 020E44B222956EA8007615A1 /* CoreTestFoundation.framework */; };
+		020E44CC22956EA8007615A1 /* ___VARIABLE_className___Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 020E44CB22956EA8007615A1 /* ___VARIABLE_className___Tests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		020E44C622956EA8007615A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 020E44A522956EA7007615A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 020E44AC22956EA7007615A1;
+			remoteInfo = Password;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		020E44AD22956EA7007615A1 /* Password.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Password.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		020E44B022956EA8007615A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		020E44B222956EA8007615A1 /* CoreTestFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTestFoundation.framework; path = Library/Frameworks/CoreTestFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		020E44B622956EA8007615A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		020E44B722956EA8007615A1 /* TE_Password.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TE_Password.h; sourceTree = "<group>"; };
+		020E44B822956EA8007615A1 /* TE_Password.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TE_Password.m; sourceTree = "<group>"; };
+		020E44BA22956EA8007615A1 /* Password.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Password.h; sourceTree = "<group>"; };
+		020E44BB22956EA8007615A1 /* Password.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Password.m; sourceTree = "<group>"; };
+		020E44BD22956EA8007615A1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		020E44C322956EA8007615A1 /* PasswordTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PasswordTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		020E44CA22956EA8007615A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		020E44CB22956EA8007615A1 /* ___VARIABLE_className___Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "___VARIABLE_className___Tests.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		020E44AA22956EA7007615A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				020E44B322956EA8007615A1 /* CoreTestFoundation.framework in Frameworks */,
+				020E44B122956EA8007615A1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		020E44C022956EA8007615A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				020E44C522956EA8007615A1 /* CoreTestFoundation.framework in Frameworks */,
+				020E44C422956EA8007615A1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		020E44A422956EA7007615A1 = {
+			isa = PBXGroup;
+			children = (
+				020E44B422956EA8007615A1 /* Password */,
+				020E44C822956EA8007615A1 /* PasswordTests */,
+				020E44AF22956EA7007615A1 /* Frameworks */,
+				020E44AE22956EA7007615A1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		020E44AE22956EA7007615A1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				020E44AD22956EA7007615A1 /* Password.bundle */,
+				020E44C322956EA8007615A1 /* PasswordTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		020E44AF22956EA7007615A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				020E44B022956EA8007615A1 /* Foundation.framework */,
+				020E44B222956EA8007615A1 /* CoreTestFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		020E44B422956EA8007615A1 /* Password */ = {
+			isa = PBXGroup;
+			children = (
+				020E44B722956EA8007615A1 /* TE_Password.h */,
+				020E44B822956EA8007615A1 /* TE_Password.m */,
+				020E44BA22956EA8007615A1 /* Password.h */,
+				020E44BB22956EA8007615A1 /* Password.m */,
+				020E44BD22956EA8007615A1 /* Images.xcassets */,
+				020E44B522956EA8007615A1 /* Supporting Files */,
+			);
+			path = Password;
+			sourceTree = "<group>";
+		};
+		020E44B522956EA8007615A1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				020E44B622956EA8007615A1 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		020E44C822956EA8007615A1 /* PasswordTests */ = {
+			isa = PBXGroup;
+			children = (
+				020E44CB22956EA8007615A1 /* ___VARIABLE_className___Tests.m */,
+				020E44C922956EA8007615A1 /* Supporting Files */,
+			);
+			path = PasswordTests;
+			sourceTree = "<group>";
+		};
+		020E44C922956EA8007615A1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				020E44CA22956EA8007615A1 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		020E44AC22956EA7007615A1 /* Password */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 020E44CF22956EA8007615A1 /* Build configuration list for PBXNativeTarget "Password" */;
+			buildPhases = (
+				020E44A922956EA7007615A1 /* Sources */,
+				020E44AA22956EA7007615A1 /* Frameworks */,
+				020E44AB22956EA7007615A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Password;
+			productName = Password;
+			productReference = 020E44AD22956EA7007615A1 /* Password.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		020E44C222956EA8007615A1 /* PasswordTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 020E44D222956EA8007615A1 /* Build configuration list for PBXNativeTarget "PasswordTests" */;
+			buildPhases = (
+				020E44BF22956EA8007615A1 /* Sources */,
+				020E44C022956EA8007615A1 /* Frameworks */,
+				020E44C122956EA8007615A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				020E44C722956EA8007615A1 /* PBXTargetDependency */,
+			);
+			name = PasswordTests;
+			productName = PasswordTests;
+			productReference = 020E44C322956EA8007615A1 /* PasswordTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		020E44A522956EA7007615A1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = KOTL;
+				TargetAttributes = {
+					020E44AC22956EA7007615A1 = {
+						CreatedOnToolsVersion = 8.3;
+						ProvisioningStyle = Automatic;
+					};
+					020E44C222956EA8007615A1 = {
+						CreatedOnToolsVersion = 8.3;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 020E44A822956EA7007615A1 /* Build configuration list for PBXProject "Password" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 020E44A422956EA7007615A1;
+			productRefGroup = 020E44AE22956EA7007615A1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				020E44AC22956EA7007615A1 /* Password */,
+				020E44C222956EA8007615A1 /* PasswordTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		020E44AB22956EA7007615A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				020E44BE22956EA8007615A1 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		020E44C122956EA8007615A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		020E44A922956EA7007615A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				020E44BC22956EA8007615A1 /* Password.m in Sources */,
+				020E44B922956EA8007615A1 /* TE_Password.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		020E44BF22956EA8007615A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				020E44CC22956EA8007615A1 /* ___VARIABLE_className___Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		020E44C722956EA8007615A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 020E44AC22956EA7007615A1 /* Password */;
+			targetProxy = 020E44C622956EA8007615A1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		020E44CD22956EA8007615A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		020E44CE22956EA8007615A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		020E44D022956EA8007615A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks,
+					/AppleInternal/Library/Frameworks,
+				);
+				INFOPLIST_FILE = Password/Info.plist;
+				INSTALL_PATH = $HOME/Library/Atlas/Plugins;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = NO;
+				VALID_ARCHS = x86_64;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		020E44D122956EA8007615A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks,
+					/AppleInternal/Library/Frameworks,
+				);
+				INFOPLIST_FILE = Password/Info.plist;
+				INSTALL_PATH = $HOME/Library/Atlas/Plugins;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = NO;
+				VALID_ARCHS = x86_64;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		020E44D322956EA8007615A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks,
+					/AppleInternal/Library/Frameworks,
+				);
+				INFOPLIST_FILE = PasswordTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		020E44D422956EA8007615A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks,
+					/AppleInternal/Library/Frameworks,
+				);
+				INFOPLIST_FILE = PasswordTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		020E44A822956EA7007615A1 /* Build configuration list for PBXProject "Password" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				020E44CD22956EA8007615A1 /* Debug */,
+				020E44CE22956EA8007615A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		020E44CF22956EA8007615A1 /* Build configuration list for PBXNativeTarget "Password" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				020E44D022956EA8007615A1 /* Debug */,
+				020E44D122956EA8007615A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		020E44D222956EA8007615A1 /* Build configuration list for PBXNativeTarget "PasswordTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				020E44D322956EA8007615A1 /* Debug */,
+				020E44D422956EA8007615A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 020E44A522956EA7007615A1 /* Project object */;
+}

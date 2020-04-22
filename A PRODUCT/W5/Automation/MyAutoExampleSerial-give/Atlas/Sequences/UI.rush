@@ -1,0 +1,108 @@
+//弹出对话框
+showDialogSync(msg){
+	Atlas.call_app_sync("show-form", { "type" : "message", "message" : msg})
+}
+//弹出对话框
+showDialog(msg){
+	Atlas.call_app("show-form", { "type" : "message", "message" : msg})
+}
+//弹窗显示提示信息
+ShowMessageBox(title,msg){
+     layout = []
+     label = {
+        "type": "label",
+        "text" : title
+     }
+     #type = {
+     # "type" : "field",
+     #"id" : "input"   #輸入欄位的變數
+     #}
+     label1 = {
+        "type": "label",
+        "text" : msg
+     }
+
+     layout = layout + [label] +[label1]
+
+     custom = {
+     "type" : "custom",
+     "layout" : layout
+     }
+    value = Atlas.call_app("show-form", custom)
+}
+
+//弹窗显示输入1个SN
+scanSnWindow(text){
+     layout = []
+     label = {
+          "type": "label",
+          "text" : text
+          }
+     type = {
+        "type" : "field",
+        "id" : "input"   #输入相关的信息
+     }
+
+     layout = layout + [label] +[type]
+
+     custom = {
+          "type" : "custom",
+          "layout" : layout
+     }
+     value = Atlas.call_app_sync("show-form", custom)
+     return value["input"]
+}
+hasDuplicateValueInDictionary(dict)
+{
+  duplicates = {}
+  for i in dict  {
+    duplicates[stringify(dict[i])] = 1
+  }
+
+  return size(duplicates) != size(dict)
+}
+serialNumberRequest(userInfo)
+{
+  units = userInfo["units"]
+  layout = [];
+
+  for i in range(units) {
+    label = {
+      "type": "label",
+      "text" : units[i]
+    }
+    type = {
+      "type" : "field",
+      "id" : units[i]
+    }
+    layout = layout + [label] + [type]
+  }
+  Atlas.Log.info("layout: " + stringify(layout))
+
+  serial_number_request = {
+    "type" : "custom",
+    "layout" : layout
+  }
+
+  value = Atlas.call_app_sync("show-form", serial_number_request)
+
+  Atlas.Log.info("scan return " + stringify(value))
+  Atlas.Log.info("unit " + Atlas.Unit.unit_identifier)
+
+  if (hasDuplicateValueInDictionary(value))
+  {
+      raise exception("has duplicate serial number")
+  }
+
+  serial_number = value[Atlas.Unit.unit_identifier] onError -> serial_number = "NA"
+
+  #Atlas.add_device_attribute("serialnumber", serial_number);
+	return serial_number
+}
+passOrFail(msg)
+{
+	res = Atlas.call_app("show-form", { "type" : "passFail", "message" : msg})
+  Atlas.Log.info("passOrFail " + stringify(res))
+  #Atlas.create_record(["MagicTest"], res)
+	return res
+}

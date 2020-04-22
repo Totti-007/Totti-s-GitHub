@@ -1,0 +1,9 @@
+#!/bin/bash
+echo "running rc.groundhog.power on `date`"
+echo "Trying to run rc.groundhog.power.delay"
+#nohup sh /etc/rc.groundhog.power.delay &
+/etc/rc.groundhog.power.delay
+sleep 3
+echo "rc.groundhog.power done on `date`"
+sleep 3
+exit 0

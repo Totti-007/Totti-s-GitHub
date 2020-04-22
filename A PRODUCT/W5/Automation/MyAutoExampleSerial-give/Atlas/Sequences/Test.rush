@@ -1,0 +1,51 @@
+main() {
+
+    if :TRUE: {
+
+        test_mode=getTestMode()
+        Atlas.Log.info("Unit test mode:" +test_mode)
+
+        ###=================================================
+        #   For automachine part,get sn from autoplugin
+        ###
+        
+        SN = Atlas.Unit.user_info.dut_sn onError e -> SN="NA"
+
+        Atlas.Log.info("[AutoPlugin]-->>get dut_sn:",SN)
+        Atlas.execute_test("RecordSN",addDeviceAttribute,"serialnumber",SN)
+        ###=================================================
+
+        # Record Unit ID:"Unit-1"
+        Atlas.execute_test("Record id",recordAttribute,"Unit id",Atlas.Unit.unit_identifier)
+        # Record Unit SN:"DLC123WESD33"
+        Atlas.execute_test("Record SN",recordAttribute,"Unit sn",SN)
+
+        # if !size(SN) == 6{
+
+        #     #ShowMessageBox("Error","SN length error")
+        #     raise exception("sn length is wrong")
+        # }else{
+            # 需要开启PDCA
+            # Atlas.execute_test("RecordSN",addDevAttr,"SN",SN) #onError e -> finish_with_error(e)
+            
+            run_rush_testSequences(SN)
+        # }
+
+
+        System.sleep(2.0)
+
+        #ShowMessageBox("Confrim","Start Test")
+    } onError e -> finishOnErr(e)
+
+}
+finishOnErr(e){
+    Atlas.Log.error("caught exception", e.className)
+
+    raise exception("exception!")
+}
+run_rush_testSequences(sn){
+    Atlas.Log.info("------------sequence start-------------")
+    System.sleep(10.0)
+    Atlas.Log.info("------------sequence end-------------")
+}
+

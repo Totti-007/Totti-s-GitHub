@@ -1,0 +1,500 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00EBD5F022543CC60021476C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00EBD5EF22543CC60021476C /* Foundation.framework */; };
+		00EBD5F222543CC60021476C /* CoreTestFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00EBD5F122543CC60021476C /* CoreTestFoundation.framework */; };
+		00EBD5FB22543CC60021476C /* SendSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EBD5FA22543CC60021476C /* SendSync.m */; };
+		00EBD5FD22543CC60021476C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00EBD5FC22543CC60021476C /* Images.xcassets */; };
+		00EBD60322543CC60021476C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00EBD5EF22543CC60021476C /* Foundation.framework */; };
+		00EBD60422543CC60021476C /* CoreTestFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00EBD5F122543CC60021476C /* CoreTestFoundation.framework */; };
+		00EBD60B22543CC60021476C /* ___VARIABLE_className___Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EBD60A22543CC60021476C /* ___VARIABLE_className___Tests.m */; };
+		00EBD618225446F00021476C /* Dut.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EBD61522543CF10021476C /* Dut.m */; };
+		00EBD619225446F00021476C /* Fixture.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EBD61722543D250021476C /* Fixture.m */; };
+		00EBD61F2254580F0021476C /* WDSyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EBD61E2254580F0021476C /* WDSyncSocket.m */; };
+		02088434227032D8008B2934 /* PlistOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = 02088433227032D8008B2934 /* PlistOperator.m */; };
+		C6CD8D802254F53A00999FCC /* csvFileOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CD8D772254F53A00999FCC /* csvFileOperator.m */; };
+		C6CD8D812254F53A00999FCC /* Folder.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CD8D792254F53A00999FCC /* Folder.m */; };
+		C6CD8D822254F53A00999FCC /* GetTimeDay.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CD8D7B2254F53A00999FCC /* GetTimeDay.m */; };
+		C6CD8D832254F53A00999FCC /* GHInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CD8D7D2254F53A00999FCC /* GHInfo.m */; };
+		C6CD8D8A2254F65C00999FCC /* Function.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CD8D872254F65C00999FCC /* Function.m */; };
+		C6CD8D8B2254F65C00999FCC /* SFC.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CD8D892254F65C00999FCC /* SFC.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00EBD60522543CC60021476C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00EBD5E422543CC60021476C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00EBD5EB22543CC60021476C;
+			remoteInfo = SendSync;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00EBD5EC22543CC60021476C /* SendSync.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SendSync.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		00EBD5EF22543CC60021476C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		00EBD5F122543CC60021476C /* CoreTestFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTestFoundation.framework; path = Library/Frameworks/CoreTestFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		00EBD5F522543CC60021476C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00EBD5F922543CC60021476C /* SendSync.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SendSync.h; sourceTree = "<group>"; };
+		00EBD5FA22543CC60021476C /* SendSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SendSync.m; sourceTree = "<group>"; };
+		00EBD5FC22543CC60021476C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		00EBD60222543CC60021476C /* SendSyncTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SendSyncTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00EBD60922543CC60021476C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00EBD60A22543CC60021476C /* ___VARIABLE_className___Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "___VARIABLE_className___Tests.m"; sourceTree = "<group>"; };
+		00EBD61422543CF10021476C /* Dut.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dut.h; sourceTree = "<group>"; };
+		00EBD61522543CF10021476C /* Dut.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Dut.m; sourceTree = "<group>"; };
+		00EBD61622543D250021476C /* Fixture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Fixture.h; sourceTree = "<group>"; };
+		00EBD61722543D250021476C /* Fixture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Fixture.m; sourceTree = "<group>"; };
+		00EBD61D2254580F0021476C /* WDSyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSyncSocket.h; sourceTree = "<group>"; };
+		00EBD61E2254580F0021476C /* WDSyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSyncSocket.m; sourceTree = "<group>"; };
+		02088432227032D8008B2934 /* PlistOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlistOperator.h; path = ../File/PlistOperator.h; sourceTree = "<group>"; };
+		02088433227032D8008B2934 /* PlistOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlistOperator.m; path = ../File/PlistOperator.m; sourceTree = "<group>"; };
+		C6CD8D762254F53A00999FCC /* csvFileOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = csvFileOperator.h; sourceTree = "<group>"; };
+		C6CD8D772254F53A00999FCC /* csvFileOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = csvFileOperator.m; sourceTree = "<group>"; };
+		C6CD8D782254F53A00999FCC /* Folder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Folder.h; sourceTree = "<group>"; };
+		C6CD8D792254F53A00999FCC /* Folder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Folder.m; sourceTree = "<group>"; };
+		C6CD8D7A2254F53A00999FCC /* GetTimeDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetTimeDay.h; sourceTree = "<group>"; };
+		C6CD8D7B2254F53A00999FCC /* GetTimeDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetTimeDay.m; sourceTree = "<group>"; };
+		C6CD8D7C2254F53A00999FCC /* GHInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHInfo.h; sourceTree = "<group>"; };
+		C6CD8D7D2254F53A00999FCC /* GHInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHInfo.m; sourceTree = "<group>"; };
+		C6CD8D862254F65C00999FCC /* Function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Function.h; sourceTree = "<group>"; };
+		C6CD8D872254F65C00999FCC /* Function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Function.m; sourceTree = "<group>"; };
+		C6CD8D882254F65C00999FCC /* SFC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFC.h; path = ../SFC.h; sourceTree = "<group>"; };
+		C6CD8D892254F65C00999FCC /* SFC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFC.m; path = ../SFC.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00EBD5E922543CC60021476C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00EBD5F222543CC60021476C /* CoreTestFoundation.framework in Frameworks */,
+				00EBD5F022543CC60021476C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00EBD5FF22543CC60021476C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00EBD60422543CC60021476C /* CoreTestFoundation.framework in Frameworks */,
+				00EBD60322543CC60021476C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00EBD5E322543CC60021476C = {
+			isa = PBXGroup;
+			children = (
+				00EBD5F322543CC60021476C /* SendSync */,
+				00EBD60722543CC60021476C /* SendSyncTests */,
+				00EBD5EE22543CC60021476C /* Frameworks */,
+				00EBD5ED22543CC60021476C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		00EBD5ED22543CC60021476C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00EBD5EC22543CC60021476C /* SendSync.bundle */,
+				00EBD60222543CC60021476C /* SendSyncTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		00EBD5EE22543CC60021476C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				00EBD5EF22543CC60021476C /* Foundation.framework */,
+				00EBD5F122543CC60021476C /* CoreTestFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		00EBD5F322543CC60021476C /* SendSync */ = {
+			isa = PBXGroup;
+			children = (
+				C6CD8D852254F65C00999FCC /* Function */,
+				C6CD8D752254F53A00999FCC /* File */,
+				00EBD61D2254580F0021476C /* WDSyncSocket.h */,
+				00EBD61E2254580F0021476C /* WDSyncSocket.m */,
+				00EBD61422543CF10021476C /* Dut.h */,
+				00EBD61522543CF10021476C /* Dut.m */,
+				00EBD61622543D250021476C /* Fixture.h */,
+				00EBD61722543D250021476C /* Fixture.m */,
+				00EBD5F922543CC60021476C /* SendSync.h */,
+				00EBD5FA22543CC60021476C /* SendSync.m */,
+				00EBD5FC22543CC60021476C /* Images.xcassets */,
+				00EBD5F422543CC60021476C /* Supporting Files */,
+			);
+			path = SendSync;
+			sourceTree = "<group>";
+		};
+		00EBD5F422543CC60021476C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00EBD5F522543CC60021476C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		00EBD60722543CC60021476C /* SendSyncTests */ = {
+			isa = PBXGroup;
+			children = (
+				00EBD60A22543CC60021476C /* ___VARIABLE_className___Tests.m */,
+				00EBD60822543CC60021476C /* Supporting Files */,
+			);
+			path = SendSyncTests;
+			sourceTree = "<group>";
+		};
+		00EBD60822543CC60021476C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00EBD60922543CC60021476C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C6CD8D752254F53A00999FCC /* File */ = {
+			isa = PBXGroup;
+			children = (
+				C6CD8D762254F53A00999FCC /* csvFileOperator.h */,
+				C6CD8D772254F53A00999FCC /* csvFileOperator.m */,
+				C6CD8D782254F53A00999FCC /* Folder.h */,
+				C6CD8D792254F53A00999FCC /* Folder.m */,
+				C6CD8D7A2254F53A00999FCC /* GetTimeDay.h */,
+				C6CD8D7B2254F53A00999FCC /* GetTimeDay.m */,
+				C6CD8D7C2254F53A00999FCC /* GHInfo.h */,
+				C6CD8D7D2254F53A00999FCC /* GHInfo.m */,
+				C6CD8D882254F65C00999FCC /* SFC.h */,
+				C6CD8D892254F65C00999FCC /* SFC.m */,
+			);
+			path = File;
+			sourceTree = "<group>";
+		};
+		C6CD8D852254F65C00999FCC /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				02088432227032D8008B2934 /* PlistOperator.h */,
+				02088433227032D8008B2934 /* PlistOperator.m */,
+				C6CD8D862254F65C00999FCC /* Function.h */,
+				C6CD8D872254F65C00999FCC /* Function.m */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00EBD5EB22543CC60021476C /* SendSync */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00EBD60E22543CC60021476C /* Build configuration list for PBXNativeTarget "SendSync" */;
+			buildPhases = (
+				00EBD5E822543CC60021476C /* Sources */,
+				00EBD5E922543CC60021476C /* Frameworks */,
+				00EBD5EA22543CC60021476C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SendSync;
+			productName = SendSync;
+			productReference = 00EBD5EC22543CC60021476C /* SendSync.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		00EBD60122543CC60021476C /* SendSyncTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00EBD61122543CC60021476C /* Build configuration list for PBXNativeTarget "SendSyncTests" */;
+			buildPhases = (
+				00EBD5FE22543CC60021476C /* Sources */,
+				00EBD5FF22543CC60021476C /* Frameworks */,
+				00EBD60022543CC60021476C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00EBD60622543CC60021476C /* PBXTargetDependency */,
+			);
+			name = SendSyncTests;
+			productName = SendSyncTests;
+			productReference = 00EBD60222543CC60021476C /* SendSyncTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		00EBD5E422543CC60021476C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "East-win";
+				TargetAttributes = {
+					00EBD5EB22543CC60021476C = {
+						CreatedOnToolsVersion = 8.3;
+						ProvisioningStyle = Automatic;
+					};
+					00EBD60122543CC60021476C = {
+						CreatedOnToolsVersion = 8.3;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 00EBD5E722543CC60021476C /* Build configuration list for PBXProject "SendSync" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 00EBD5E322543CC60021476C;
+			productRefGroup = 00EBD5ED22543CC60021476C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				00EBD5EB22543CC60021476C /* SendSync */,
+				00EBD60122543CC60021476C /* SendSyncTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00EBD5EA22543CC60021476C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00EBD5FD22543CC60021476C /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00EBD60022543CC60021476C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00EBD5E822543CC60021476C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6CD8D8B2254F65C00999FCC /* SFC.m in Sources */,
+				02088434227032D8008B2934 /* PlistOperator.m in Sources */,
+				00EBD61F2254580F0021476C /* WDSyncSocket.m in Sources */,
+				C6CD8D822254F53A00999FCC /* GetTimeDay.m in Sources */,
+				C6CD8D812254F53A00999FCC /* Folder.m in Sources */,
+				C6CD8D802254F53A00999FCC /* csvFileOperator.m in Sources */,
+				00EBD618225446F00021476C /* Dut.m in Sources */,
+				00EBD619225446F00021476C /* Fixture.m in Sources */,
+				C6CD8D832254F53A00999FCC /* GHInfo.m in Sources */,
+				00EBD5FB22543CC60021476C /* SendSync.m in Sources */,
+				C6CD8D8A2254F65C00999FCC /* Function.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00EBD5FE22543CC60021476C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00EBD60B22543CC60021476C /* ___VARIABLE_className___Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00EBD60622543CC60021476C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00EBD5EB22543CC60021476C /* SendSync */;
+			targetProxy = 00EBD60522543CC60021476C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		00EBD60C22543CC60021476C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		00EBD60D22543CC60021476C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		00EBD60F22543CC60021476C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks,
+					/AppleInternal/Library/Frameworks,
+				);
+				INFOPLIST_FILE = SendSync/Info.plist;
+				INSTALL_PATH = $HOME/Library/Atlas/Plugins;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = NO;
+				VALID_ARCHS = x86_64;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		00EBD61022543CC60021476C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks,
+					/AppleInternal/Library/Frameworks,
+				);
+				INFOPLIST_FILE = SendSync/Info.plist;
+				INSTALL_PATH = $HOME/Library/Atlas/Plugins;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = NO;
+				VALID_ARCHS = x86_64;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		00EBD61222543CC60021476C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks,
+					/AppleInternal/Library/Frameworks,
+				);
+				INFOPLIST_FILE = SendSyncTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		00EBD61322543CC60021476C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks,
+					/AppleInternal/Library/Frameworks,
+				);
+				INFOPLIST_FILE = SendSyncTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00EBD5E722543CC60021476C /* Build configuration list for PBXProject "SendSync" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00EBD60C22543CC60021476C /* Debug */,
+				00EBD60D22543CC60021476C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00EBD60E22543CC60021476C /* Build configuration list for PBXNativeTarget "SendSync" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00EBD60F22543CC60021476C /* Debug */,
+				00EBD61022543CC60021476C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00EBD61122543CC60021476C /* Build configuration list for PBXNativeTarget "SendSyncTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00EBD61222543CC60021476C /* Debug */,
+				00EBD61322543CC60021476C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 00EBD5E422543CC60021476C /* Project object */;
+}

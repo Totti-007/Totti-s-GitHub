@@ -1,0 +1,22 @@
+#!/bin/bash
+
+echo "running rc.groundhog.gdlocal on `date`"
+/usr/sbin/chown -R gdlocal /Users/gdlocal
+/usr/bin/chgrp -R staff /Users/gdlocal
+echo "groundhog: fixing gdlocal permissions returned $?"
+
+/usr/sbin/chown -R gdlocal /vault
+echo "groundhog: fixing vault permissions returned $?"
+
+# we delay slamming screensaver prefs here because this involves using ByHost preferences and 
+# we need to make sure that the primary ethernet adapter comes up
+
+echo "Trying to run rc.groundhog.gdlocal.delay on `date`"
+#nohup sh /etc/rc.groundhog.gdlocal.delay &
+/etc/rc.groundhog.gdlocal.delay
+echo "rc.groundhog.gdlocal done on `date`"
+
+/System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -configure -allowAccessFor -allUsers -privs -all
+echo "groundhog: Setting up VNC Access for allUsers."
+
+export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:"${PATH}"

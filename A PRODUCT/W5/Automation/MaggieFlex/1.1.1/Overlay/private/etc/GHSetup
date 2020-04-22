@@ -1,0 +1,289 @@
+#!/bin/bash
+set -o pipefail
+VERSION="1.3"
+
+
+function log_output()
+{
+    echo $*
+}
+
+log_output "====================================================="
+log_output "rc.groundhog/GHSetup started on `date -j "+%b %d %T"`"
+log_output " "
+
+if [ -d /GH_Config ] ; then                                # If /GH_Config is installed on this system,
+    while [ ! -f /var/db/.autoconfcomplete ] ; do          #    while /GH_Config/GH_Config has not completed
+        log_output "Waiting for GH_Config to complete..."  #       we will wait for GH_Config to complete
+        sleep 2                                            #       before continuing to run...
+    done                                                   #    end-of-while-loop
+fi                                                         # end-of-if-statement
+
+log_output " "
+log_output "====================================================="
+log_output "rc.groundhog/GHSetup RUNNING on `date -j "+%b %d %T"`"
+log_output " "
+mount
+log_output " "
+
+#
+# JSM: Try to detect new network hardware...
+#
+networksetup -detectnewhardware
+
+
+#
+# JSM: Fix HedgehogRepo mount issues, if they exist...
+#
+
+START_TIME=${SECONDS}
+TIME_TO_WAIT=60
+KEEP_WAITING="TRUE"
+HH_MOUNTED="FALSE"
+
+# Wait until something is mounted that contains "HedgehogRepo" in its name, or until TIME_TO_WAIT seconds have passed
+while [ "${HH_MOUNTED}" != "TRUE" -a "${KEEP_WAITING}" == "TRUE" ] ; do
+    HH_MNTD=`mount | grep dev/disk | sed -e 's/ on / on#/g' | sed -e 's/ (/#(/g' | cut -f2 -d'#' | grep "HedgehogRepo"`
+    if [ "${HH_MNTD}" != "" ] ; then
+        HH_MOUNTED="TRUE"
+    else
+        if [ $(( ${SECONDS} - ${START_TIME} )) -gt ${TIME_TO_WAIT} ] ; then
+            KEEP_WAITING="FALSE"
+        else
+            sleep 1
+        fi
+    fi
+done
+
+
+
+log_output "BEGIN: HedgehogRepo mountpoint fix."
+if [ -d "/Volumes/HedgehogRepo" ] ; then
+    log_output "  -- Folder exists: /Volumes/HedgehogRepo"
+    HH_MNTD=`mount | grep dev/disk | sed -e 's/ on / on#/g' | sed -e 's/ (/#(/g' | cut -f2 -d'#' | grep "HedgehogRepo$"`
+    if [ "${HH_MNTD}" != "" ] ; then
+        log_output "  ---- Is a mount point: /Volumes/HedgehogRepo"
+        log_output "  -- No action is required."
+    else
+        log_output "  ---- Is NOT a mount point: /Volumes/HedgehogRepo"
+        rm -rf "/Volumes/HedgehogRepo"
+        retval=$?
+        if [ $retval -ne 0 ] ; then
+            log_output "  ---- Unable to remove: /Volumes/HedgehogRepo"
+        else
+            log_output "  ---- Successfully removed: /Volumes/HedgehogRepo"
+        fi
+        log_output ""
+        if [ -d "/Volumes/HedgehogRepo 1" ] ; then
+            log_output "  -- Folder exists: /Volumes/HedgehogRepo\\ 1"
+            HH1_MNT_INFO=`mount | grep dev/disk | sed -e 's/ on /#on#/g' | sed -e 's/ (/#(/g' | grep "HedgehogRepo 1"`
+            HH1_DEV=`echo "${HH1_MNT_INFO}" | cut -f1 -d'#' | grep "/dev/disk"`
+            HH1_MNTD=`echo "${HH1_MNT_INFO}" | cut -f3 -d'#' | grep "HedgehogRepo 1$"`
+            if [ "${HH1_MNTD}" != "" ] ; then
+                log_output "  ---- Is a mount point: /Volumes/HedgehogRepo\\ 1"
+                log_output "  ---- Mounted on: ${HH1_DEV}"
+                log_output ""
+                log_output "  -- Need to unmount it, and remount it as: /Volumes/HedgehogRepo"
+                /usr/sbin/diskutil unmount "/Volumes/HedgehogRepo 1" > /dev/null
+                retval=$?
+                if [ $retval -ne 0 ] ; then
+                    log_output "  ---- diskutil failed to unmount /Volumes/HedgehogRepo\\ 1"
+                else
+                    log_output "  ---- diskutil successfully unmounted: /Volumes/HedgehogRepo\\ 1"
+                    mkdir "/Volumes/HedgehogRepo"
+                    retval=$?
+                    if [ $retval -ne 0 ] ; then
+                        log_output "  ---- mkdir failed to create folder: /Volumes/HedgehogRepo"
+                    else
+                        /usr/sbin/diskutil mount -mountPoint "/Volumes/HedgehogRepo" "${HH1_DEV}" > /dev/null
+                        retval=$?
+                        if [ $retval -ne 0 ] ; then
+                            log_output "  ---- diskutil failed to mount ${HH_DEV} on /Volumes/HedgehogRepo"
+                        else
+                            log_output "  ---- diskutil successfully mounted ${HH_DEV} on /Volumes/HedgehogRepo"
+                        fi
+                    fi
+                fi
+            else
+                log_output "  -- Is NOT a mount point: /Volumes/HedgehogRepo\\ 1"
+                # NOT SURE WHAT TO DO WITH THIS CASE...
+                log_output "  -- IGNORING FOR NOW..."
+                #echo "Should we remove it?"
+                #echo rm -rf "/Volumes/HedgehogRepo 1"
+            fi
+        else
+            log_output "  -- Folder does not exist: /Volumes/HedgehogRepo\\ 1"
+        fi
+    fi
+else
+    log_output "  -- Folder does not exist: /Volumes/HedgehogRepo"
+    log_output "  -- This may be correct, if the HedgehogRepo volume has not been mounted yet."
+fi
+log_output " "
+mount
+log_output " "
+log_output "END: HedgehogRepo mountpoint fix."
+log_output "---------------------------------"
+
+# FIX PERMISSIONS on rc.groundhog.x scripts...
+chmod 755 /etc/rc.groundhog.*
+
+# Execute rc.groundhog.x scripts...
+if [ -f /etc/rc.groundhog.preprocess ]; then
+        echo "==> TRYING to run rc.groundhog.preprocess on `date -j "+%b %d %T"`"
+        log_output "Running rc.groundhog.preprocess"
+	/etc/rc.groundhog.preprocess 2>&1
+fi
+
+# slam IP address
+IPPID=""
+if [ -f /etc/rc.groundhog.ip ]; then
+        echo "==> TRYING to run rc.groundhog.ip on `date -j "+%b %d %T"`"
+        log_output "Running rc.groundhog.ip"
+	/etc/rc.groundhog.ip > /tmp/rc.groundhog.ip.log 2>&1 &
+        IPPID=$!
+        echo "IPPID: ${IPPID}"
+        ps lax | grep "${IPPID}" | grep -v grep
+        echo "---"
+fi
+
+# slam permissions on ~gdlocal
+GDLOCALPID=""
+if [ -f /etc/rc.groundhog.gdlocal ]; then
+        echo "==> TRYING to run rc.groundhog.gdlocal on `date -j "+%b %d %T"`"
+	/etc/rc.groundhog.gdlocal > /tmp/rc.groundhog.gdlocal.log 2>&1 &
+        GDLOCALPID=$!
+        echo "GDLOCALPID: ${GDLOCALPID}"
+        ps lax | grep "${GDLOCALPID}" | grep -v grep
+        echo "---"
+fi
+
+# slam power management
+POWERPID=""
+if [ -f /etc/rc.groundhog.power ]; then
+        echo "==> TRYING to run rc.groundhog.power on `date -j "+%b %d %T"`"
+        log_output "Running rc.groundhog.power"
+	/etc/rc.groundhog.power > /tmp/rc.groundhog.power.log 2>&1 &
+        POWERPID=$!
+        echo "POWERPID: ${POWERPID}"
+        ps lax | grep "${POWERPID}" | grep -v grep
+        echo "---"
+fi
+
+# force time update with NTP server
+TIMEPID=""
+if [ -f /etc/rc.groundhog.time ]; then
+        echo "==> TRYING to run rc.groundhog.time on `date -j "+%b %d %T"`"
+        log_output "Running rc.groundhog.time"
+        ntp_start_time=$SECONDS
+	/etc/rc.groundhog.time > /tmp/rc.groundhog.time.log 2>&1 &
+        TIMEPID=$!
+        echo "TIMEPID: ${TIMEPID}"
+        ps lax | grep "${TIMEPID}" | grep -v grep
+        echo "---"
+fi
+
+# RAFT...
+RAFTPID=""
+if [ -f /etc/rc.groundhog.raft ]; then
+        echo "==> TRYING to run rc.groundhog.raft on `date -j "+%b %d %T"`"
+        log_output "Running rc.groundhog.raft"
+	/etc/rc.groundhog.raft > /tmp/rc.groundhog.raft.log 2>&1 &
+        RAFTPID=$!
+        echo "RAFTPID: ${RAFTPID}"
+        ps lax | grep "${RAFTPID}" | grep -v grep
+        echo "---"
+fi
+
+sleep 5
+# WAIT FOR ANY BACKGROUND PROCESSES...
+if [ ${IPPID} != "" ] ; then
+    echo "Waiting for rc.groundhog.ip"
+    wait ${IPPID}
+    echo "Done waiting for rc.groundhog.ip"
+    echo "LOG OUTPUT:"
+    cat /tmp/rc.groundhog.ip.log
+fi
+if [ ${GDLOCALPID} != "" ] ; then
+    echo "Waiting for rc.groundhog.gdlocal"
+    wait ${GDLOCALPID}
+    echo "Done waiting for rc.groundhog.gdlocal"
+    echo "LOG OUTPUT:"
+    cat /tmp/rc.groundhog.gdlocal.log
+fi
+if [ ${POWERPID} != "" ] ; then
+    echo "Waiting for rc.groundhog.power"
+    wait ${POWERPID}
+    echo "Done waiting for rc.groundhog.power"
+    echo "LOG OUTPUT:"
+    cat /tmp/rc.groundhog.power.log
+fi
+if [ ${RAFTPID} != "" ] ; then
+    echo "Waiting for rc.groundhog.raft"
+    wait ${RAFTPID}
+    echo "Done waiting for rc.groundhog.raft"
+    echo "LOG OUTPUT:"
+    cat /tmp/rc.groundhog.raft.log
+fi
+
+ntp_time_to_wait=120
+if [ ${TIMEPID} != "" ] ; then
+    echo "Waiting for rc.groundhog.time"
+    line=`ps -e -o pid -o etime | grep " ${TIMEPID} " | grep -v grep`
+    busy_bar
+    while [ "$line" != "" ] ; do
+        #debug_output "Waiting for rc.groundhog.time to finish..."
+        sleep 5
+        if [ $(( $SECONDS - $ntp_start_time )) -ge $ntp_time_to_wait ] ; then
+            echo "rc.groundhog.time has taken too long.  Killing it."
+            kill ${TIMEPID} > /dev/null 2>&1
+            kill -15 ${TIMEPID} > /dev/null 2>&1
+            kill -9 ${TIMEPID} > /dev/null 2>&1
+            break
+        fi
+        line=`ps -e -o pid -o etime | grep " ${TIMEPID} " | grep -v grep`
+    done
+
+    wait ${TIMEPID}
+    echo "Done waiting for rc.groundhog.time"
+    echo "LOG OUTPUT:"
+    cat /tmp/rc.groundhog.time.log
+fi
+
+if [ -d /GH_Config ] ; then                                    # If /GH_Config is installed on this system,
+                                                               # Wait until 16 seconds have passed since we
+                                                               # actually started doing stuff...
+    KEEP_WAITING="TRUE"
+    while [ "${KEEP_WAITING}" == "TRUE" ] ; do
+        if [ $(( ${SECONDS} - ${START_TIME} )) -gt 16 ] ; then
+            KEEP_WAITING="FALSE"
+        else
+            sleep 1
+        fi
+    done
+                                                               # Now that we have waited 16 seconds... don't go
+                                                               # any further until we know that GH_Config is done
+                                                               # running...
+                                                               #
+    while [ ! -f /var/db/.autoconfcomplete ] ; do              #    while /GH_Config/GH_Config has not completed
+        log_output "Waiting for GH_Config to complete..."      #       we will wait for GH_Config to complete
+        sleep 2                                                #       before continuing to run...
+    done                                                       #    end-of-while-loop
+fi                                                             # end-of-if-statement
+
+
+if [ -f /etc/rc.groundhog.postprocess ]; then
+        echo "==> TRYING to run rc.groundhog.postprocess on `date -j "+%b %d %T"`"
+        log_output "Running rc.groundhog.postprocess"
+	/etc/rc.groundhog.postprocess 2>&1
+fi
+
+log_output "_____________________________________________________"
+log_output "rc.groundhog/GHSetup done on `date -j "+%b %d %T"`"
+
+if [ ! -d /tmp/.donotremove ] ; then
+    mkdir /tmp/.donotremove
+fi
+touch /tmp/.donotremove/.ghsetupcomplete
+
+exit 0

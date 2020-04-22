@@ -1,0 +1,13 @@
+group,name,units,upperLimit,lowerLimit,relaxedUpperLimit,relaxedLowerLimit
+MP,battery,mV,100,5,,
+MP,wireless,mV,100,45,,
+MP,gyro,mV,100,25,,
+MP,camera,mV,100,15,,
+DOE,battery,mV,100,5,,
+DOE,wireless,mV,100,45,,
+DOE,gyro,mV,100,25,,
+DOE,camera,mV,100,15,,
+FOO,HelloFoo,s,51,0,,
+MATH,ProductFunc,haha,12,2,,
+MATH,AddFunc,yoyo,15,3,,
+DOE,ReadStep1,lala,60,30,,

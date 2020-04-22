@@ -1,0 +1,175 @@
+# Atlas Logging:
+#	 =>	Atlas.Log.info(arguemnts...)
+#	 =>	Atlas.Log.debug(arguments...)
+#	 =>	Atlas.Log.error(arguments...)
+
+# Atlas Launch Station Plugin:
+#	 =>	Altas.launch_plugin(bundle, plugin)
+#	 =>	Atlas.launch_plugin(bundle, plugin, name)
+#	 =>	Atlas.launch_plugin(bundle, plugin, name, setup_parameters)
+
+# Atlas Teardown Station Plugin:
+#	 =>	Altas.teardown_plugin(name)
+#	 =>	Altas.teardown_plugin(name, teardown_parameters)
+
+#
+# App Setup:
+# * Called when app first connects to the atlas core and before the station is started
+# * Called when app first connects to the atlas core and before the station is started
+# 
+
+app_setup(app)
+{
+
+
+    stationTopology = {"groups" : [
+    {
+        "identifier" : "Group-1",
+               "units" : [
+                       {
+                          "identifier" : "Unit-1",
+                          "userinfo" : {"slot":1, "ip":"169.254.1.32","dut_sn":"CAL001"}
+                          # "userinfo" : {"unitNumber":"1"}
+                       }
+                       ,
+                       {
+                          "identifier" : "Unit-2",
+                          "userinfo" : {"slot":2, "ip":"169.254.1.33","dut_sn":"CAL002"}
+                          # "userinfo" : {"unitNumber":"2"}
+                       }
+                     ]
+
+    }
+    ]
+}
+
+  app.settings = {
+       "station-name" : "Maggie Flex",
+       "force-fullscreen" : :FALSE:,
+       "start-button" : stationTopology,
+       "station-topology" : stationTopology
+
+       "custom-test-modes" : [
+    {
+      "name" : "GRR",
+      "base-test-mode" : "LineBringup"
+    }
+   ]
+
+  }
+}
+
+#
+# Station Setup:
+# * Called when core is starting your station for the first time (app start)
+# 
+
+station_setup()
+{    Atlas.Log.info("Station setup")
+	   Atlas.Log.info("Setting up station")
+
+     Atlas.launch_plugin("CallAppBundle", "CallApp", "CallApp")
+     Atlas.launch_plugin("SendSync", "Fixture",{})   # 治具的专有的 plugin,存在这个软件活动期间.
+     Atlas.launch_plugin("Password", "TE_Password",{})  #只用于保存密码，在每次重启软件时重置密码
+
+     config={
+        "numberOfGroups":"1",
+        "numberOfUnits":"2",
+        "LogName":"AutoExample.csv",
+        "zmqPubPort":"10052"
+    }
+    Atlas.launch_plugin("SocketAutoBundle","SerialAutoPlugin",config)
+    Globals.Testway = Atlas.call_plugin("SerialAutoPlugin","scan")
+    Atlas.Log.info("Testmode:",Globals.Testway)
+    if(Globals.Testway == "Auto")
+    {
+      params={
+        "baud":9600,
+         }
+       Atlas.call_plugin("SerialAutoPlugin", "open",params)
+    }
+   
+}
+
+#
+# Station Teardown:
+# * Called when core is tearing down your station (app quit)
+# 
+
+station_teardown()
+{
+	Atlas.Log.info("Station teardown")
+	Atlas.teardown_plugin("Fixture")
+  Atlas.teardown_plugin("Dut")
+  Atlas.teardown_plugin("SerialAutoPlugin")
+
+}
+
+
+group_setup(group)
+{
+     Atlas.Log.info("Setting up Group")
+        Atlas.launch_plugin(group, "SendSync", "Fixture") #
+        for unit in group.units {
+          unit_setup(unit)
+     }
+}
+
+group_teardown(group)
+{
+     Atlas.Log.info("group_teardown")
+
+     if (group.units[0]["test_mode_name"] == "Production")
+     {
+        # 自动开始测试
+        # Atlas.call_plugin("Fixture","clickStartButton")
+     } 
+     Atlas.Log.info("group_teardown")
+}
+
+
+#
+# Unit Setup:
+# * Called only when core receives new unit.
+# 
+
+unit_setup(unit)
+{
+	Atlas.Log.info("Started", unit)
+
+     Atlas.Log.info("Atlas all-info:",Atlas)
+
+	Atlas.set_sequence(unit, "SendSync.rush")
+     
+     configArray = PList.load(System.getenv("HOME") +  "/Library/Atlas/Configs/SendSyncConfig" + ".plist")
+
+     SAFCTConfig = {}
+
+     if unit["unit_identifier"] == "Unit-1"{
+          
+          SAFCTConfig = configArray[0]
+          Atlas.Log.info("12344555",SAFCTConfig)
+
+     }
+          
+     if unit["unit_identifier"] == "Unit-2"{
+     
+     SAFCTConfig = configArray[1]
+          
+     }
+               
+     Atlas.launch_plugin(unit, "SendSync", "Dut", "Dut",SAFCTConfig)
+     Atlas.launch_plugin(unit, "AtlasPluginLibrary", "DRCB")
+
+}
+
+#
+# Unit Setup:
+# * <Fill In>
+# 
+
+unit_teardown(unit)
+{
+	Atlas.Log.info(unit, "********Finished")
+
+}

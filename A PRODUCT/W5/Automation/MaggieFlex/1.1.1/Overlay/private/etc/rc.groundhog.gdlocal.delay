@@ -1,0 +1,75 @@
+#!/bin/bash
+
+# This script is desperately in need of cleaning.
+
+echo "running rc.groundhog.gdlocal.delay on `date`"
+
+# PRIMARY_MAC_ADDRESS=$( /sbin/ifconfig en0 | /usr/bin/grep ether | /usr/bin/awk '{print $2}');
+# CLEANED_MAC_ADDRESS=`/bin/echo "${PRIMARY_MAC_ADDRESS}" | /usr/bin/sed -e 's/://g'`
+# GEP Why was this doing this twice? (first of two-- see below)
+
+# sleep 15
+# GEP Don't sleep and pray, use ipconfig waitall-- that's what it's for
+# /usr/sbin/ipconfig waitall
+
+# GEP The entire exercise of determining our IP is unnecessary here and 
+# incorrect on newer hosts. Rather than figuring this out by hand,
+# just make defaults do it for us.  
+# PRIMARY_MAC_ADDRESS=$( /sbin/ifconfig en0 | /usr/bin/grep ether | /usr/bin/awk '{print $2}');
+# CLEANED_MAC_ADDRESS=`/bin/echo "${PRIMARY_MAC_ADDRESS}" | /usr/bin/sed -e 's/://g'`
+# /usr/bin/defaults write /Users/gdlocal/Library/Preferences/ByHost/com.apple.screensaver.${CLEANED_MAC_ADDRESS} idleTime -int 0
+
+# Don't think we need this anymore because it doesn't matter if iface is up for this.
+# Use ipconfig waitall just in case
+/usr/sbin/ipconfig waitall
+# 
+
+# Set the screen saver timeout to NEVER (0). This should be unnecessary if the install script has done
+# its job, but the screen saver kicking in is kinda bad, so we'll set it again just to be sure.
+/usr/bin/defaults -currentHost write /Users/gdlocal/Library/Preferences/ByHost/com.apple.screensaver idleTime -int 0
+
+echo "groundhog: setting screensaver timeout in /Users/gdlocal/Library/Preferences/ByHost/com.apple.screensaver to NEVER returned $?"
+
+# Set the menu bar to always be transparent 
+# /usr/bin/defaults write /Users/gdlocal/Library/Preferences/.GlobalPreferences AppleEnableMenuBarTransparency -int 1
+# Fix ownership
+# /usr/sbin/chown gdlocal:staff /Users/gdlocal/Library/Preferences/.GlobalPreferences
+#
+# Let's try a different tack:
+/usr/bin/su gdlocal -c '/usr/bin/defaults write /Users/gdlocal/Library/Preferences/.GlobalPreferences AppleEnableMenuBarTransparency -int 1'
+
+# GEP This, however, should be done. We never have to know the name of the 
+# plist, but it is safe to glob here. Also, fix group.
+#
+# make sure to clean up the permissions!!!!!
+#/usr/sbin/chown gdlocal:gdlocal /Users/gdlocal/Library/Preferences/ByHost/com.apple.screensaver.${CLEANED_MAC_ADDRESS}.plist
+#
+# GEP Since we're now setting a bunch of plists here after we run the overlay
+# let's chown them all and set the correct perms
+#/usr/sbin/chown gdlocal:staff /Users/gdlocal/Library/Preferences/ByHost/com.apple.screensaver.${CLEANED_MAC_ADDRESS}.plist
+/usr/sbin/chown gdlocal:staff /Users/gdlocal/Library/Preferences/ByHost/*.plist
+/bin/chmod 600 /Users/gdlocal/Library/Preferences/ByHost/*.plist
+
+# (Hopefully) temporary loginitem hack
+# This is a bad way to do this. We're setting a global login item because 
+# it deoesn't really matter and it is expedient to do so, not because it is 
+# the correct thing to do.
+# We might still be clobbered by something in postprocess, but doing this 
+# here (rather than just tossing the plist in the overlay) should give us
+# a fighting chance. Hoping to fix this after conferring with someone more
+# clued.
+
+/usr/bin/defaults read /Library/Preferences/loginwindow|grep IPMenuItem > /dev/null 2>&1
+THEREYET="$?"
+if [[ "${THEREYET}" -ne "0" ]]; then 
+    /usr/bin/defaults write /Library/Preferences/loginwindow AutoLaunchedApplicationDictionary -array-add '{ "Path" = "/AppleInternal/Applications/Utilities/IPMenuItem.app"; "Hide" = "1"; }'
+else
+    echo "rc.groundhog.gdlocal.delay: IPMenuItem.app already appears to be in loginwindow.plist... skipping"
+fi
+
+# ... ew.
+
+/usr/bin/mdutil -i off /Volumes/* >& /dev/null
+/usr/bin/mdutil -E /Volumes/* >& /dev/null
+
+echo "rc.groundhog.gdlocal.delay done on `date`"

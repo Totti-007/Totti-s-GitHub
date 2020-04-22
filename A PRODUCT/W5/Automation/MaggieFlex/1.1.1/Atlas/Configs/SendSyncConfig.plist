@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>unitCounts</key>
+		<string>2</string>
+		<key>fixtureUart</key>
+		<string>fixtureUart</string>
+		<key>ip</key>
+		<string>169.254.1.32</string>
+		<key>port</key>
+		<string>7600</string>
+		<key>unitID</key>
+		<string>unit1</string>
+		<key>debug</key>
+		<string>NO</string>
+		<key>DataPath</key>
+		<string>/vault/Atlas/Maggie_FCT</string>
+	</dict>
+	<dict>
+		<key>unitCounts</key>
+		<string>2</string>
+		<key>ip</key>
+		<string>169.254.1.33</string>
+		<key>port</key>
+		<string>7600</string>
+		<key>unitID</key>
+		<string>unit2</string>
+		<key>debug</key>
+		<string>NO</string>
+		<key>DataPath</key>
+		<string>/vault/Atlas/Maggie_FCT</string>
+	</dict>
+</array>
+</plist>
